@@ -237,7 +237,7 @@ const handleTeam = (e) => {
         move_4: moveSelectors[23].value
     };
 
-    helper.sendPost(e.targer.action,
+    helper.sendPost(e.target.action,
         {
             teamName,
             member1,
@@ -265,6 +265,85 @@ const deleteTeam = async (e, team) => {
     loadTeamsFromServer();
 
     return false;
+}
+
+const styleTypes = () => {
+    const typeBlocks = document.querySelectorAll(".type");
+
+    for (let i = 0; i < typeBlocks.length; i++) {
+        if (typeBlocks[i].innerHTML == "Normal") {
+            typeBlocks[i].style.backgroundColor = "#aca594";
+            typeBlocks[i].style.borderColor = "#aca594";
+        }
+        else if (typeBlocks[i].innerHTML == "Fire") {
+            typeBlocks[i].style.backgroundColor = "#ec502a";
+            typeBlocks[i].style.borderColor = "#ec502a";
+        }
+        else if (typeBlocks[i].innerHTML == "Water") {
+            typeBlocks[i].style.backgroundColor = "#4f9eff";
+            typeBlocks[i].style.borderColor = "#4f9eff";
+        }
+        else if (typeBlocks[i].innerHTML == "Electric") {
+            typeBlocks[i].style.backgroundColor = "#f9c52d";
+            typeBlocks[i].style.borderColor = "#f9c52d";
+        }
+        else if (typeBlocks[i].innerHTML == "Grass") {
+            typeBlocks[i].style.backgroundColor = "#86cd54";
+            typeBlocks[i].style.borderColor = "#86cd54";
+        }
+        else if (typeBlocks[i].innerHTML == "Ice") {
+            typeBlocks[i].style.backgroundColor = "#6fcfe8";
+            typeBlocks[i].style.borderColor = "#6fcfe8";
+        }
+        else if (typeBlocks[i].innerHTML == "Fighting") {
+            typeBlocks[i].style.backgroundColor = "#9e5137";
+            typeBlocks[i].style.borderColor = "#9e5137";
+        }
+        else if (typeBlocks[i].innerHTML == "Poison") {
+            typeBlocks[i].style.backgroundColor = "#ae5ba4";
+            typeBlocks[i].style.borderColor = "#ae5ba4";
+        }
+        else if (typeBlocks[i].innerHTML == "Ground") {
+            typeBlocks[i].style.backgroundColor = "#e0cb8b";
+            typeBlocks[i].style.borderColor = "#e0cb8b";
+        }
+        else if (typeBlocks[i].innerHTML == "Flying") {
+            typeBlocks[i].style.backgroundColor = "#9faef7";
+            typeBlocks[i].style.borderColor = "#9faef7";
+        }
+        else if (typeBlocks[i].innerHTML == "Psychic") {
+            typeBlocks[i].style.backgroundColor = "#f573a4";
+            typeBlocks[i].style.borderColor = "#f573a4";
+        }
+        else if (typeBlocks[i].innerHTML == "Bug") {
+            typeBlocks[i].style.backgroundColor = "#aebc21";
+            typeBlocks[i].style.borderColor = "#aebc21";
+        }
+        else if (typeBlocks[i].innerHTML == "Rock") {
+            typeBlocks[i].style.backgroundColor = "#baa459";
+            typeBlocks[i].style.borderColor = "#baa459";
+        }
+        else if (typeBlocks[i].innerHTML == "Ghost") {
+            typeBlocks[i].style.backgroundColor = "#6465b5";
+            typeBlocks[i].style.borderColor = "#6465b5";
+        }
+        else if (typeBlocks[i].innerHTML == "Dragon") {
+            typeBlocks[i].style.backgroundColor = "#7a66e7";
+            typeBlocks[i].style.borderColor = "#7a66e7";
+        }
+        else if (typeBlocks[i].innerHTML == "Dark") {
+            typeBlocks[i].style.backgroundColor = "#715a4a";
+            typeBlocks[i].style.borderColor = "#715a4a";
+        }
+        else if (typeBlocks[i].innerHTML == "Steel") {
+            typeBlocks[i].style.backgroundColor = "#adadc6";
+            typeBlocks[i].style.borderColor = "#adadc6";
+        }
+        else {
+            typeBlocks[i].style.backgroundColor = "#f1b6f7";
+            typeBlocks[i].style.borderColor = "#f1b6f7";
+        }
+    }
 }
 
 const loadSpecies = (memberNumber) => {
@@ -309,6 +388,7 @@ const loadSpecies = (memberNumber) => {
 
         sprites[memberNumber].src = species["sprites"]["home"]["front_default"];
         types[memberNumber].innerHTML = `${species["types"].map(type => `<div className="type">${reformatName(type["type"]["name"])}</div>`).join("")}`;
+        styleTypes(memberNumber);
 
         levelBars[memberNumber].value = 100;
         natureSelectors[memberNumber].value = natureSelectors[memberNumber].find((nature) => { nature.value.name == "serious" });
