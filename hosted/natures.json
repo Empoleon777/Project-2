@@ -1,0 +1,1708 @@
+[
+    {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 1,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 61,
+                "low_hp_preference": 61,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 7,
+                "low_hp_preference": 7,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 32,
+                "low_hp_preference": 32,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "hardy",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "がんばりや"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "노력"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "勤奮"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Hardi"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Robust"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Fuerte"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Ardita"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Hardy"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "がんばりや"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "勤奋"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -1,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 1,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 2,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 30,
+                "low_hp_preference": 32,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 20,
+                "low_hp_preference": 58,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 50,
+                "low_hp_preference": 10,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "bold",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "ずぶとい"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "대담"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "大膽"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Assuré"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Kühn"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Osada"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Sicura"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Bold"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "ずぶとい"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "大胆"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 3,
+        "increased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "likes_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 35,
+                "low_hp_preference": 34,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 45,
+                "low_hp_preference": 60,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 20,
+                "low_hp_preference": 6,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "modest",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "ひかえめ"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "조심"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "內斂"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Modeste"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Mäßig"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Modesta"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Modesta"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Modest"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "ひかえめ"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "内敛"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "jump",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/5/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 4,
+        "increased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "likes_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 40,
+                "low_hp_preference": 25,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 50,
+                "low_hp_preference": 62,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 10,
+                "low_hp_preference": 13,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "calm",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "おだやか"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "차분"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "溫和"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Calme"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Still"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Serena"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Calma"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Calm"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "おだやか"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "温和"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 5,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 62,
+                "low_hp_preference": 30,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 10,
+                "low_hp_preference": 20,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 28,
+                "low_hp_preference": 50,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "timid",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "おくびょう"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "겁쟁이"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "膽小"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Timide"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Scheu"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Miedosa"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Timida"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Timid"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "おくびょう"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "胆小"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 2,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 30,
+                "low_hp_preference": 32,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 20,
+                "low_hp_preference": 58,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 50,
+                "low_hp_preference": 10,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "bold",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "ずぶとい"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "대담"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "大膽"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Assuré"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Kühn"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Osada"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Sicura"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Bold"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "ずぶとい"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "大胆"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 5,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 62,
+                "low_hp_preference": 30,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 10,
+                "low_hp_preference": 20,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 28,
+                "low_hp_preference": 50,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "timid",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "おくびょう"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "겁쟁이"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "膽小"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Timide"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Scheu"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Miedosa"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Timida"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Timid"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "おくびょう"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "胆小"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 6,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 20,
+                "low_hp_preference": 84,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 25,
+                "low_hp_preference": 8,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 55,
+                "low_hp_preference": 8,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "lonely",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "さみしがり"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "외로움"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "怕寂寞"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Solo"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Solo"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Huraña"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Schiva"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Lonely"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "さみしがり"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "怕寂寞"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 7,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 56,
+                "low_hp_preference": 56,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 22,
+                "low_hp_preference": 22,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 22,
+                "low_hp_preference": 22,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "docile",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "すなお"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "온순"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "坦率"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Docile"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Sanft"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Dócil"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Docile"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Docile"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "すなお"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "坦率"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 1,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            },
+            {
+                "max_change": -1,
+                "pokeathlon_stat": {
+                    "name": "jump",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/5/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 10,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 58,
+                "low_hp_preference": 88,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 37,
+                "low_hp_preference": 6,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 5,
+                "low_hp_preference": 6,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "hasty",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "せっかち"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "성급"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "急躁"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Pressé"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Hastig"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Activa"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Lesta"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Hasty"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "せっかち"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "急躁"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "hates_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "id": 17,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 20,
+                "low_hp_preference": 70,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 70,
+                "low_hp_preference": 22,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 10,
+                "low_hp_preference": 8,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "naughty",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "やんちゃ"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "개구쟁이"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "頑皮"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Mauvais"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Frech"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Pícara"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Birbona"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Naughty"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "やんちゃ"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "顽皮"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 19,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 56,
+                "low_hp_preference": 56,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 22,
+                "low_hp_preference": 22,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 22,
+                "low_hp_preference": 22,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "quirky",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "きまぐれ"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "변덕"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "浮躁"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Bizarre"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Kauzig"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Rara"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Furba"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Quirky"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "きまぐれ"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "浮躁"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": 1,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": -1,
+                "pokeathlon_stat": {
+                    "name": "skill",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/3/"
+                }
+            }
+        ]
+    },
+    {
+        "decreased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "hates_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "id": 21,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "move_battle_style_preferences": [
+            {
+                "high_hp_preference": 70,
+                "low_hp_preference": 32,
+                "move_battle_style": {
+                    "name": "attack",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/1/"
+                }
+            },
+            {
+                "high_hp_preference": 15,
+                "low_hp_preference": 60,
+                "move_battle_style": {
+                    "name": "defense",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/2/"
+                }
+            },
+            {
+                "high_hp_preference": 15,
+                "low_hp_preference": 8,
+                "move_battle_style": {
+                    "name": "support",
+                    "url": "https://pokeapi.co/api/v2/move-battle-style/3/"
+                }
+            }
+        ],
+        "name": "brave",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "ゆうかん"
+            },
+            {
+                "language": {
+                    "name": "ko",
+                    "url": "https://pokeapi.co/api/v2/language/3/"
+                },
+                "name": "용감"
+            },
+            {
+                "language": {
+                    "name": "zh-Hant",
+                    "url": "https://pokeapi.co/api/v2/language/4/"
+                },
+                "name": "勇敢"
+            },
+            {
+                "language": {
+                    "name": "fr",
+                    "url": "https://pokeapi.co/api/v2/language/5/"
+                },
+                "name": "Brave"
+            },
+            {
+                "language": {
+                    "name": "de",
+                    "url": "https://pokeapi.co/api/v2/language/6/"
+                },
+                "name": "Mutig"
+            },
+            {
+                "language": {
+                    "name": "es",
+                    "url": "https://pokeapi.co/api/v2/language/7/"
+                },
+                "name": "Audaz"
+            },
+            {
+                "language": {
+                    "name": "it",
+                    "url": "https://pokeapi.co/api/v2/language/8/"
+                },
+                "name": "Audace"
+            },
+            {
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "name": "Brave"
+            },
+            {
+                "language": {
+                    "name": "ja",
+                    "url": "https://pokeapi.co/api/v2/language/11/"
+                },
+                "name": "ゆうかん"
+            },
+            {
+                "language": {
+                    "name": "zh-Hans",
+                    "url": "https://pokeapi.co/api/v2/language/12/"
+                },
+                "name": "勇敢"
+            }
+        ],
+        "pokeathlon_stat_changes": [
+            {
+                "max_change": -2,
+                "pokeathlon_stat": {
+                    "name": "speed",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
+                }
+            },
+            {
+                "max_change": 2,
+                "pokeathlon_stat": {
+                    "name": "power",
+                    "url": "https://pokeapi.co/api/v2/pokeathlon-stat/2/"
+                }
+            }
+        ]
+    }
+]

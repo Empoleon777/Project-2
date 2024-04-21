@@ -5,6 +5,8 @@ const init = () => {
     const signupForm = document.getElementById('signupForm');
     const loginForm = document.getElementById('loginForm');
     const changePasswordForm = document.getElementById('changePasswordForm');
+    const teamForm = document.getElementById('teamForm');
+    const teamMessage = document.getElementById('teamMessage');
 
     /* If this page has the signupForm, add it's submit event listener.
        Event listener will grab the username, password, and password2
@@ -14,7 +16,7 @@ const init = () => {
     if (signupForm) {
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            teamMessage.classList.add('hidden');
 
             const username = signupForm.querySelector('#user').value;
             const pass = signupForm.querySelector('#pass').value;
@@ -43,7 +45,7 @@ const init = () => {
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            teamMessage.classList.add('hidden');
 
             const username = loginForm.querySelector('#user').value;
             const pass = loginForm.querySelector('#pass').value;
@@ -61,7 +63,7 @@ const init = () => {
     if (changePasswordForm) {
         changePasswordForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            teamMessage.classList.add('hidden');
 
             const username = changePasswordForm.querySelector('#user').value;
             const oldpass = changePasswordForm.querySelector('#oldpass').value;
@@ -79,6 +81,23 @@ const init = () => {
             }
 
             sendPost(changePasswordForm.getAttribute('action'), { username, oldpass, newpass, newpass2 });
+            return false;
+        });
+    }
+
+    if (teamForm) {
+        teamForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            teamMessage.classList.add('hidden');
+
+            const name = teamForm.querySelector('#teamName').value;
+            
+
+            if (!name) {
+                name = "Untitled";
+            }
+
+            sendPost(teamForm.getAttribute('action'), { name, team });
             return false;
         });
     }
