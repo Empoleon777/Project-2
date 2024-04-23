@@ -17,6 +17,8 @@ const router = (app) => {
   app.post('/builder', mid.requiresLogin, controllers.Team.makeTeam);
   app.delete('/deleteTeam', mid.requiresLogin, controllers.Team.deleteTeam);
 
+  app.get('/data', mid.requiresLogin, controllers.Data.loadData);
+
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

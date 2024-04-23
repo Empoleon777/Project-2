@@ -1,4 +1,3 @@
-const fs = require('fs');
 const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -9,6 +8,18 @@ let abilityData;
 let moveData;
 let natureData;
 let itemData;
+
+const loadAllData = async (e) => {
+    e.preventDefault();
+    helper.hideError();
+
+    const response = await fetch(`/data`, {
+        method: 'GET',
+    });
+    const data = await response.json();
+
+    return data;
+}
 
 const reformatName = (name) => {
     // This section will remove unnecessary dashes. However, there are some cases where they're part of the name.
@@ -1171,12 +1182,14 @@ const TeamList = (props) => {
         return (
             <div key={domo._id} className="team" onclick={loadTeam(team)}>
                 <h3 className="teamName">{team.name}</h3>
-                <img src={partySprite1}></img>
-                <img src={partySprite2}></img>
-                <img src={partySprite3}></img>
-                <img src={partySprite4}></img>
-                <img src={partySprite5}></img>
-                <img src={partySprite6}></img>
+                <div className="partySprites">
+                    <img className="partySprite" src={partySprite1}></img>
+                    <img className="partySprite" src={partySprite2}></img>
+                    <img className="partySprite" src={partySprite3}></img>
+                    <img className="partySprite" src={partySprite4}></img>
+                    <img className="partySprite" src={partySprite5}></img>
+                    <img className="partySprite" src={partySprite6}></img>
+                </div>
                 <button className="deleteTeam" onClick={(e) => deleteTeam(e, team)}>Delete</button>
             </div>
         );
@@ -1258,12 +1271,6 @@ const init = () => {
         return false;
     });
 
-    pokemonData = fs.readFileSync(`/assets/pokemon.json`, { encoding: 'utf-8', flag: 'r' });
-    moveData = fs.readFileSync(`/assets/moves.json`, { encoding: 'utf-8', flag: 'r' });
-    abilityData = fs.readFileSync(`/assets/abilities.json`, { encoding: 'utf-8', flag: 'r' });
-    itemData = fs.readFileSync(`/assets/items.json`, { encoding: 'utf-8', flag: 'r' });
-    natureData = fs.readFileSync(`/assets/natures.json`, { encoding: 'utf-8', flag: 'r' });
-
     ReactDOM.render(
         <TeamList teams={[]} />,
         document.getElementById('TeamList')
@@ -1273,6 +1280,8 @@ const init = () => {
         <TeamBuilder />,
         document.getElementById('Team')
     );
+
+    [pokemonData, moveData, abilityData, itemData, natureData] = loadAllData();
 
     const speciesSelectors = document.querySelectorAll(".speciesSelector");
     const natureSelectors = document.querySelectorAll(".natureSelector");
