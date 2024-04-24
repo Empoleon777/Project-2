@@ -13,6 +13,37 @@ nav {
     background-color: #55acee;
 }
 
+nav:nth-child(1) {
+    padding-left: 25px;
+}
+
+.navlink {
+    padding: 5px;
+    padding-top: 12px;
+    padding-left: 20px;
+    color: white;
+    font-size: 1.3em;
+    float: left;
+}
+
+.navlink a,
+.navlink a:link,
+.navlink a:visited,
+.navlink a:hover,
+.navlink a:active {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #55acee;
+    transition: background-color 0.4s ease;
+}
+
+.navlink a:hover {
+    transition: background-color 0.8s ease;
+    background-color: #66bdff;
+}
+
 .TeamList {
     width: 700px;
 }
@@ -43,7 +74,232 @@ nav {
     width: 700px;
 }
 
-.item
-.item active {
-    
+.item,
+.item-active {
+    display: grid;
+    grid-template-columns: 1/7 1/7 1/7 1/7 1/7 1/7 1/7;
+    grid-template-rows: 1/8 1/8 1/8 1/8 1/8 1/8 1/8 1/8;
+    grid-template-areas: 
+        "member_number member_number member_number member_number member_number member_number member_number"
+        "species types level level level level level"
+        "sprite sprite base_HP HP_IVs HP_EVs final_HP final_HP"
+        "sprite sprite base_attack attack_IVs attack_EVs final_attack move_1"
+        "sprite sprite base_defense defense_IVs defense_EVs final_defense move_2"
+        "sprite sprite base_special_attack special_attack_IVs special_attack_EVs final_special_attack move_3"
+        "nickname ability base_special_defense special_defense_IVs special_defense_EVs final_special_defense move_4"
+        "nature item base_speed speed_IVs speed_EVs final_speed final_speed";
+}
+
+.memberNumber {
+    grid-area: member_number;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speciesSelector {
+    grid-area: species;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nicknameBar {
+    grid-area: nickname;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sprite {
+    grid-area: sprite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.types {
+    grid-area: types;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.levelBar {
+    grid-area: level;
+    display: flex;
+    align-items: center;
+}
+
+.abilitySelector {
+    grid-area: ability;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.natureSelector {
+    grid-area: nature;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemSelector {
+    grid-area: item;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.baseHP {
+    grid-area: base_HP;    
+    display: flex;
+    align-items: center;
+}
+
+.baseAttack {
+    grid-area: base_attack;
+    display: flex;
+    align-items: center;
+}
+
+.baseDefense{
+    grid-area: base_defense;
+    display: flex;
+    align-items: center;
+}
+
+.baseSpecialAttack {
+    grid-area: base_special_attack;
+    display: flex;
+    align-items: center;
+}
+
+.baseSpecialDefense{
+    grid-area: base_special_defense;
+    display: flex;
+    align-items: center;
+}
+
+.baseSpeed {
+    grid-area: base_speed;
+    display: flex;
+    align-items: center;
+}
+
+.HPIVBar {
+    grid-area: HP_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.attackIVBar {
+    grid-area: attack_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.defenseIVBar {
+    grid-area: defense_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.specialAttackIVBar {
+    grid-area: special_attack_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.specialDefenseIVBar {
+    grid-area: special_defense_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.speedIVBar {
+    grid-area: speed_IVs;
+    display: flex;
+    align-items: center;
+}
+
+.HPEVBar {
+    grid-area: HP_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.attackEVBar {
+    grid-area: attack_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.defenseEVBar {
+    grid-area: defense_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.specialAttackEVBar {
+    grid-area: special_attack_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.specialDefenseEVBar {
+    grid-area: special_defense_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.speedEVBar {
+    grid-area: speed_EVs;
+    display: flex;
+    align-items: center;
+}
+
+.finalHP {
+    grid-area: final_HP;
+    display: flex;
+    align-items: center;
+}
+
+.finalAttack {
+    grid-area: final_attack;
+    display: flex;
+    align-items: center;
+}
+
+.finalDefense{
+    grid-area: final_defense;
+    display: flex;
+    align-items: center;
+}
+
+.finalSpecialAttack {
+    grid-area: final_special_attack;
+    display: flex;
+    align-items: center;
+}
+
+.finalSpecialDefense{
+    grid-area: final_special_defense;
+    display: flex;
+    align-items: center;
+}
+
+.finalSpeed {
+    grid-area: final_speed;
+    display: flex;
+    align-items: center;
+}
+
+.moveSelector1 {
+    grid-area: sprite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -593,7 +593,7 @@ const TeamBuilder = async (props) => {
                 </ol>
 
                 <div class="carousel-inner">
-                    <div class="item active">
+                    <div class="item-active">
                         <h3 className="memberNumber">Member 1</h3>
                         <label htmlFor="species">Species: </label>
                         <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
