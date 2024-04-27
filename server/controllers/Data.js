@@ -1,20 +1,45 @@
 const fs = require('fs');
 
-const loadData = async (req, res) => {
-  try {
-    const pokemonData = fs.readFileSync('/assets/pokemon.json', { encoding: 'utf-8', flag: 'r' });
-    const moveData = fs.readFileSync('/assets/moves.json', { encoding: 'utf-8', flag: 'r' });
-    const abilityData = fs.readFileSync('/assets/abilities.json', { encoding: 'utf-8', flag: 'r' });
-    const itemData = fs.readFileSync('/assets/items.json', { encoding: 'utf-8', flag: 'r' });
-    const natureData = fs.readFileSync('/assets/natures.json', { encoding: 'utf-8', flag: 'r' });
+const pokemonData = fs.readFileSync(`${__dirname}/../../hosted/pokemon.json`, { encoding: 'utf-8', flag: 'r' });
+const moveData = fs.readFileSync(`${__dirname}/../../hosted/moves.json`, { encoding: 'utf-8', flag: 'r' });
+const abilityData = fs.readFileSync(`${__dirname}/../../hosted/abilities.json`, { encoding: 'utf-8', flag: 'r' });
+const itemData = fs.readFileSync(`${__dirname}/../../hosted/items.json`, { encoding: 'utf-8', flag: 'r' });
+const natureData = fs.readFileSync(`${__dirname}/../../hosted/natures.json`, { encoding: 'utf-8', flag: 'r' });
 
-    return [pokemonData, moveData, abilityData, itemData, natureData];
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: 'Error loading data!' });
-  }
+const loadPokemon = async (req, res) => {
+  return res.json(
+    pokemonData
+  );
+};
+
+const loadMoves = async (req, res) => {
+  return res.json(
+    moveData
+  );
+};
+
+const loadAbilities = async (req, res) => {
+  return res.json(
+    abilityData
+  );
+};
+
+const loadItems = async (req, res) => {
+  return res.json(
+    itemData
+  );
+};
+
+const loadNatures = async (req, res) => {
+  return res.json(
+    natureData
+  );
 };
 
 module.exports = {
-  loadData,
+  loadPokemon,
+  loadMoves,
+  loadAbilities,
+  loadItems,
+  loadNatures
 };

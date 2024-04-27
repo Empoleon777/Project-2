@@ -46,6 +46,19 @@ nav:nth-child(1) {
 
 .TeamList {
     width: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.addTeam {
+    background-color: gray;
+    font-size: 24px;
+    color: white;
+}
+
+.noTeams {
+    align-self: center;
+    font-weight: bolder;
 }
 
 .team {
@@ -72,10 +85,10 @@ nav:nth-child(1) {
 
 #teamForm {
     width: 700px;
+    height: 500px;
 }
 
-.item,
-.item-active {
+.member {
     display: grid;
     grid-template-columns: 1/7 1/7 1/7 1/7 1/7 1/7 1/7;
     grid-template-rows: 1/8 1/8 1/8 1/8 1/8 1/8 1/8 1/8;
@@ -298,7 +311,28 @@ nav:nth-child(1) {
 }
 
 .moveSelector1 {
-    grid-area: sprite;
+    grid-area: move_1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moveSelector2 {
+    grid-area: move_2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moveSelector3 {
+    grid-area: move_3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moveSelector4 {
+    grid-area: move_4;
     display: flex;
     align-items: center;
     justify-content: center;

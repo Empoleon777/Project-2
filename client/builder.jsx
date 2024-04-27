@@ -9,11 +9,8 @@ let moveData;
 let natureData;
 let itemData;
 
-const loadAllData = async (e) => {
-    e.preventDefault();
-    helper.hideError();
-
-    const response = await fetch(`/data`, {
+const loadAllData = async (url) => {
+    const response = await fetch(url, {
         method: 'GET',
     });
     const data = await response.json();
@@ -264,6 +261,10 @@ const handleTeam = (e) => {
     return false
 }
 
+const addTeam = (e) => {
+
+}
+
 const deleteTeam = async (e, team) => {
     e.preventDefault();
     helper.hideError();
@@ -435,7 +436,7 @@ const loadSpecies = (memberNumber) => {
         abilitySelectors[memberNumber].innerHTML = `${abilities.map(ability => `<option value="${ability}">${reformatName(ability.name)}</option>`).join("")}`;
 
         let moves = [];
-        species["moves"].foreach(move => {
+        species["moves"].forEach(move => {
             moves.push(moveData.find(data => data.name === move.name));
         });
 
@@ -571,7 +572,7 @@ const calcStats = (memberNumber) => {
     }
 }
 
-const TeamBuilder = async (props) => {
+const TeamBuilder = (props) => {
     return (
         <form id="teamBuilder"
             onChange={handleTeam}
@@ -582,496 +583,486 @@ const TeamBuilder = async (props) => {
         >
             <label htmlFor="name">Team Name: </label>
             <input className="teamName" type="text" name="name" />
-            <div id="teamCarousel" className="carousel slide" data-ride="carousel">
-                <ol className="carousel-indicators">
-                    <li data-target="#teamCarousel" data-slide-to="0" className="active"></li>
-                    <li data-target="#teamCarousel" data-slide-to="1"></li>
-                    <li data-target="#teamCarousel" data-slide-to="2"></li>
-                    <li data-target="#teamCarousel" data-slide-to="3"></li>
-                    <li data-target="#teamCarousel" data-slide-to="4"></li>
-                    <li data-target="#teamCarousel" data-slide-to="5"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="item-active">
-                        <h3 className="memberNumber">Member 1</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <h3 className="memberNumber">Member 1</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
                     </div>
-                    <div class="item">
-                        <h3 className="memberNumber">Member 2</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <h3 className="memberNumber">Member 3</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <h3 className="memberNumber">Member 4</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <h3 className="memberNumber">Member 5</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <h3 className="memberNumber">Member 6</h3>
-                        <label htmlFor="species">Species: </label>
-                        <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
-                            <option value="NONE">---Species---</option>
-                        </select>
-                        <label htmlFor="nickname">Nickname: </label>
-                        <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
-                        <img className="sprite" src=""></img>
-                        <div className="types">
-                        </div>
-                        <label htmlFor="level">Level: </label>
-                        <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
-                        <label htmlFor="ability">Ability: </label>
-                        <select className="abilitySelector" name="ability">
-                        </select>
-                        <label htmlFor="nature">Nature: </label>
-                        <select className="natureSelector" name="nature" onChange={calcStats(0)}>
-                        </select>
-                        <label htmlFor="item">Held Item: </label>
-                        <select className="itemSelector" name="item">
-                        </select>
-                        <label>HP: </label>
-                        <div className="baseHP"></div>
-                        <label htmlFor="HPIVs">IVs: </label>
-                        <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="HPEVs">EVs: </label>
-                        <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalHP"></div>
-                        <label>Attack: </label>
-                        <div className="baseAttack"></div>
-                        <label htmlFor="attackIVs">IVs: </label>
-                        <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="attackEVs">EVs: </label>
-                        <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalAttack"></div>
-                        <label>Defense: </label>
-                        <div className="baseDefense"></div>
-                        <label htmlFor="defenseIVs">IVs: </label>
-                        <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="defenseEVs">EVs: </label>
-                        <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalDefense"></div>
-                        <label>Special Attack: </label>
-                        <div className="baseSpecialAttack"></div>
-                        <label htmlFor="specialAttackIVs">IVs: </label>
-                        <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialAttackEVs">EVs: </label>
-                        <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialAttack"></div>
-                        <label>Special Defense: </label>
-                        <div className="baseSpecialDefense"></div>
-                        <label htmlFor="specialDefenseIVs">IVs: </label>
-                        <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="specialDefenseEVs">EVs: </label>
-                        <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpecialDefense"></div>
-                        <label>Speed: </label>
-                        <div className="baseSpeed"></div>
-                        <label htmlFor="speedIVs">IVs: </label>
-                        <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
-                        <label htmlFor="speedEVs">EVs: </label>
-                        <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
-                        <div className="finalSpeed"></div>
-                        <label htmlFor="moves">Moves: </label>
-                        <select className="moveSelector1" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector2" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector3" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                        <select className="moveSelector4" name="moves">
-                            <option value="NONE">---Select Move---</option>
-                        </select>
-                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
                 </div>
-
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <div class="carousel-item">
+                    <h3 className="memberNumber">Member 2</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
+                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                </div>
+                <div class="carousel-item">
+                    <h3 className="memberNumber">Member 3</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
+                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                </div>
+                <div class="carousel-item">
+                    <h3 className="memberNumber">Member 4</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
+                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                </div>
+                <div class="carousel-item">
+                    <h3 className="memberNumber">Member 5</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
+                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                </div>
+                <div class="carousel-item">
+                    <h3 className="memberNumber">Member 6</h3>
+                    <label htmlFor="species">Species: </label>
+                    <select className="speciesSelector" name="species" onChange={loadSpecies(0)}>
+                        <option value="NONE">---Species---</option>
+                    </select>
+                    <label htmlFor="nickname">Nickname: </label>
+                    <input className="nicknameBar" type="text" name="nickname" placeholder="nickname" />
+                    <img className="sprite" src=""></img>
+                    <div className="types">
+                    </div>
+                    <label htmlFor="level">Level: </label>
+                    <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={calcStats(0)} />
+                    <label htmlFor="ability">Ability: </label>
+                    <select className="abilitySelector" name="ability">
+                    </select>
+                    <label htmlFor="nature">Nature: </label>
+                    <select className="natureSelector" name="nature" onChange={calcStats(0)}>
+                    </select>
+                    <label htmlFor="item">Held Item: </label>
+                    <select className="itemSelector" name="item">
+                    </select>
+                    <label>HP: </label>
+                    <div className="baseHP"></div>
+                    <label htmlFor="HPIVs">IVs: </label>
+                    <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="HPEVs">EVs: </label>
+                    <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalHP"></div>
+                    <label>Attack: </label>
+                    <div className="baseAttack"></div>
+                    <label htmlFor="attackIVs">IVs: </label>
+                    <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="attackEVs">EVs: </label>
+                    <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalAttack"></div>
+                    <label>Defense: </label>
+                    <div className="baseDefense"></div>
+                    <label htmlFor="defenseIVs">IVs: </label>
+                    <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="defenseEVs">EVs: </label>
+                    <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalDefense"></div>
+                    <label>Special Attack: </label>
+                    <div className="baseSpecialAttack"></div>
+                    <label htmlFor="specialAttackIVs">IVs: </label>
+                    <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialAttackEVs">EVs: </label>
+                    <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialAttack"></div>
+                    <label>Special Defense: </label>
+                    <div className="baseSpecialDefense"></div>
+                    <label htmlFor="specialDefenseIVs">IVs: </label>
+                    <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="specialDefenseEVs">EVs: </label>
+                    <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpecialDefense"></div>
+                    <label>Speed: </label>
+                    <div className="baseSpeed"></div>
+                    <label htmlFor="speedIVs">IVs: </label>
+                    <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={calcStats(0)} />
+                    <label htmlFor="speedEVs">EVs: </label>
+                    <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={calcStats(0)} />
+                    <div className="finalSpeed"></div>
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector1" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector2" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector3" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                    <select className="moveSelector4" name="moves">
+                        <option value="NONE">---Select Move---</option>
+                    </select>
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </form>
     );
 }
@@ -1129,6 +1120,7 @@ const TeamList = (props) => {
     if (props.teams.length === 0) {
         return (
             <div className="TeamList">
+                <button className="addTeam" onClick={addTeam}>+</button>
                 <h3 className="noTeams">No Teams Yet!</h3>
             </div>
         );
@@ -1155,32 +1147,32 @@ const TeamList = (props) => {
         }
 
         if (team.member2) {
-            member2 = pokemonData.find((pokemon) => { pokemon.name === team.member1.species });
+            member2 = pokemonData.find((pokemon) => { pokemon.name === team.member2.species });
             partySprite2 = member2["sprites"]["front_default"];
         }
 
         if (team.member3) {
-            member3 = pokemonData.find((pokemon) => { pokemon.name === team.member1.species });
+            member3 = pokemonData.find((pokemon) => { pokemon.name === team.member3.species });
             partySprite3 = member3["sprites"]["front_default"];
         }
 
         if (team.member4) {
-            member4 = pokemonData.find((pokemon) => { pokemon.name === team.member1.species });
+            member4 = pokemonData.find((pokemon) => { pokemon.name === team.member4.species });
             partySprite4 = member4["sprites"]["front_default"];
         }
 
         if (team.member5) {
-            member5 = pokemonData.find((pokemon) => { pokemon.name === team.member1.species });
+            member5 = pokemonData.find((pokemon) => { pokemon.name === team.member5.species });
             partySprite5 = member5["sprites"]["front_default"];
         }
 
         if (team.member6) {
-            member6 = pokemonData.find((pokemon) => { pokemon.name === team.member1.species });
+            member6 = pokemonData.find((pokemon) => { pokemon.name === team.member6.species });
             partySprite6 = member6["sprites"]["front_default"];
         }
 
         return (
-            <div key={domo._id} className="team" onclick={loadTeam(team)}>
+            <div key={team._id} className="team" onclick={loadTeam(team)}>
                 <h3 className="teamName">{team.name}</h3>
                 <div className="partySprites">
                     <img className="partySprite" src={partySprite1}></img>
@@ -1197,6 +1189,7 @@ const TeamList = (props) => {
 
     return (
         <div className="TeamList">
+            <button className="addTeam" onClick={addTeam}>+</button>
             {teamNodes}
         </div>
     );
@@ -1257,11 +1250,11 @@ const loadTeamsFromServer = async () => {
     const data = await response.json();
     ReactDOM.render(
         <TeamList teams={data.teams} />,
-        document.getElementById('teams')
+        document.getElementById('TeamList')
     );
 }
 
-const init = () => {
+const init = async () => {
     const changePasswordButton = document.getElementById('changePassword');
 
     changePasswordButton.addEventListener('click', (e) => {
@@ -1281,21 +1274,25 @@ const init = () => {
         document.getElementById('Team')
     );
 
-    [pokemonData, moveData, abilityData, itemData, natureData] = loadAllData();
+    pokemonData = loadAllData(`/pokemonData`);
+    moveData = loadAllData(`/moveData`);
+    abilityData = loadAllData(`/abilityData`);
+    itemData = loadAllData(`/itemData`);
+    natureData = loadAllData(`/natureData`);
 
     const speciesSelectors = document.querySelectorAll(".speciesSelector");
     const natureSelectors = document.querySelectorAll(".natureSelector");
     const itemSelectors = document.querySelectorAll(".itemSelector");
 
-    speciesSelectors.foreach(selector => {
+    speciesSelectors.forEach(selector => {
         selector.innerHTML += pokemonData.map(pokemon => `<option value="${pokemon}">${reformatName(pokemon.name)}</option>`).join("");
     });
 
-    natureSelectors.foreach(selector => {
+    natureSelectors.forEach(selector => {
         selector.innerHTML += natureData.map(nature => `<option value="${nature}">${reformatName(nature.name)} (+${reformatName(nature["increased_stat"].name)}, ${reformatName(nature["decreased_stat"].name)})</option>`).join("");
     });
 
-    itemSelectors.foreach(selector => {
+    itemSelectors.forEach(selector => {
         selector.innerHTML += itemData.map(item => `<option value="${item}">${reformatName(item.name)}</option>`).join("");
     });
 
