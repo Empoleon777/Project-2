@@ -61,6 +61,13 @@ nav:nth-child(1) {
     font-weight: bolder;
 }
 
+#teamBuilder {
+    display: grid;
+    grid-template-areas: 
+    "name"
+    "team_builder";
+}
+
 .team {
     width: 120px;
     background-color: rgb(190, 189, 189);
