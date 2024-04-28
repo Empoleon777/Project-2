@@ -87,10 +87,26 @@ const changePassword = async (req, res) => {
   }
 };
 
+const togglePremiumStatus = async (req, res) => {
+  try {
+    if (req.session.account.premium === false) {
+      req.session.account.premium = true;
+    }
+    else {
+      req.session.account.premium = false;
+    }
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'An error occurred!' });
+  }
+}
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
   changePassword,
+  togglePremiumStatus
 };

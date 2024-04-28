@@ -63,9 +63,9 @@ nav:nth-child(1) {
 
 #teamBuilder {
     display: grid;
-    grid-template-areas: 
-    "name"
-    "team_builder";
+    grid-template-areas:
+        "name"
+        "team_builder";
 }
 
 .team {
@@ -99,7 +99,7 @@ nav:nth-child(1) {
     display: grid;
     grid-template-columns: 1/7 1/7 1/7 1/7 1/7 1/7 1/7;
     grid-template-rows: 1/8 1/8 1/8 1/8 1/8 1/8 1/8 1/8;
-    grid-template-areas: 
+    grid-template-areas:
         "member_number member_number member_number member_number member_number member_number member_number"
         "species types level level level level level"
         "sprite sprite base_HP HP_IVs HP_EVs final_HP final_HP"
@@ -111,35 +111,35 @@ nav:nth-child(1) {
 }
 
 .memberNumber {
-    grid-area: member_number;
+    grid-area: "member_number";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .speciesSelector {
-    grid-area: species;
+    grid-area: "species";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .nicknameBar {
-    grid-area: nickname;
+    grid-area: "nickname";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .sprite {
-    grid-area: sprite;
+    grid-area: "sprite";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .types {
-    grid-area: types;
+    grid-area: "types";
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,200 +147,218 @@ nav:nth-child(1) {
 }
 
 .levelBar {
-    grid-area: level;
+    grid-area: "level";
     display: flex;
     align-items: center;
 }
 
 .abilitySelector {
-    grid-area: ability;
+    grid-area: "ability";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .natureSelector {
-    grid-area: nature;
+    grid-area: "nature";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .itemSelector {
-    grid-area: item;
+    grid-area: "item";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .baseHP {
-    grid-area: base_HP;    
+    grid-area: "base_HP";
     display: flex;
     align-items: center;
 }
 
 .baseAttack {
-    grid-area: base_attack;
+    grid-area: "base_attack";
     display: flex;
     align-items: center;
 }
 
-.baseDefense{
-    grid-area: base_defense;
+.baseDefense {
+    grid-area: "base_defense";
     display: flex;
     align-items: center;
 }
 
 .baseSpecialAttack {
-    grid-area: base_special_attack;
+    grid-area: "base_special_attack";
     display: flex;
     align-items: center;
 }
 
-.baseSpecialDefense{
-    grid-area: base_special_defense;
+.baseSpecialDefense {
+    grid-area: "base_special_defense";
     display: flex;
     align-items: center;
 }
 
 .baseSpeed {
-    grid-area: base_speed;
+    grid-area: "base_speed";
     display: flex;
     align-items: center;
 }
 
 .HPIVBar {
-    grid-area: HP_IVs;
+    grid-area: "HP_IVs";
     display: flex;
     align-items: center;
 }
 
 .attackIVBar {
-    grid-area: attack_IVs;
+    grid-area: "attack_IVs";
     display: flex;
     align-items: center;
 }
 
 .defenseIVBar {
-    grid-area: defense_IVs;
+    grid-area: "defense_IVs";
     display: flex;
     align-items: center;
 }
 
 .specialAttackIVBar {
-    grid-area: special_attack_IVs;
+    grid-area: "special_attack_IVs";
     display: flex;
     align-items: center;
 }
 
 .specialDefenseIVBar {
-    grid-area: special_defense_IVs;
+    grid-area: "special_defense_IVs";
     display: flex;
     align-items: center;
 }
 
 .speedIVBar {
-    grid-area: speed_IVs;
+    grid-area: "speed_IVs";
     display: flex;
     align-items: center;
 }
 
 .HPEVBar {
-    grid-area: HP_EVs;
+    grid-area: "HP_EVs";
     display: flex;
     align-items: center;
 }
 
 .attackEVBar {
-    grid-area: attack_EVs;
+    grid-area: "attack_EVs";
     display: flex;
     align-items: center;
 }
 
 .defenseEVBar {
-    grid-area: defense_EVs;
+    grid-area: "defense_EVs";
     display: flex;
     align-items: center;
 }
 
 .specialAttackEVBar {
-    grid-area: special_attack_EVs;
+    grid-area: "special_attack_EVs";
     display: flex;
     align-items: center;
 }
 
 .specialDefenseEVBar {
-    grid-area: special_defense_EVs;
+    grid-area: "special_defense_EVs";
     display: flex;
     align-items: center;
 }
 
 .speedEVBar {
-    grid-area: speed_EVs;
+    grid-area: "speed_EVs";
     display: flex;
     align-items: center;
 }
 
 .finalHP {
-    grid-area: final_HP;
+    grid-area: "final_HP";
     display: flex;
     align-items: center;
 }
 
 .finalAttack {
-    grid-area: final_attack;
+    grid-area: "final_attack";
     display: flex;
     align-items: center;
 }
 
-.finalDefense{
-    grid-area: final_defense;
+.finalDefense {
+    grid-area: "final_defense";
     display: flex;
     align-items: center;
 }
 
 .finalSpecialAttack {
-    grid-area: final_special_attack;
+    grid-area: " final_special_attack";
     display: flex;
     align-items: center;
 }
 
-.finalSpecialDefense{
-    grid-area: final_special_defense;
+.finalSpecialDefense {
+    grid-area: "final_special_defense";
     display: flex;
     align-items: center;
 }
 
 .finalSpeed {
-    grid-area: final_speed;
+    grid-area: "final_speed";
     display: flex;
     align-items: center;
 }
 
 .moveSelector1 {
-    grid-area: move_1;
+    grid-area: "move_1";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .moveSelector2 {
-    grid-area: move_2;
+    grid-area: "move_2";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .moveSelector3 {
-    grid-area: move_3;
+    grid-area: "move_3";
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .moveSelector4 {
-    grid-area: move_4;
+    grid-area: "move_4";
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#premiumWindow {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-areas:
+        "description"
+        "toggle";
+}
+
+#text {
+    grid-area: "description";
+    align-self: center;
+}
+
+#toggle {
+    grid-area: "toggle";
+    width: 100px;
 }

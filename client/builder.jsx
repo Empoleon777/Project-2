@@ -11,8 +11,11 @@ let abilityData;
 let moveData;
 let natureData;
 let itemData;
+let typeData;
 
-const loadAllData = async (url) => {
+let premiumStatus;
+
+const loadData = async (url) => {
     const response = await fetch(url, {
         method: 'GET',
     });
@@ -265,7 +268,12 @@ const handleTeam = (e) => {
 }
 
 const addTeam = (e) => {
+    const speciesSelectors = document.querySelectorAll(".speciesSelector");
 
+    for (let i = 0; i < speciesSelectors.length; i++) {
+        speciesSelectors[i].value = "NONE";
+        loadSpecies(i);
+    }
 }
 
 const deleteTeam = async (e, team) => {
@@ -1077,8 +1085,6 @@ const TeamBuilder = (props) => {
                     </div>
                 </Splide>
             </div>
-
-
         </form>
     );
 }
@@ -1270,12 +1276,745 @@ const loadTeamsFromServer = async () => {
     );
 }
 
+const PremiumWindow = (props) => {
+    if (premiumStatus === true) {
+        return (
+            <div id="PremiumWindow">
+                <p id="text">
+                    Purchase the premium model to make use of this team builder's built-in damage calculator!
+                </p>
+                <button id="toggle">Turn Premium Mode Off</button>
+            </div>
+        );
+    }
+    else {
+        return (
+            <div id="PremiumWindow">
+                <p id="text">
+                    Purchase the premium model to make use of this team builder's built-in damage calculator!
+                </p>
+                <button id="toggle">Turn Premium Mode On</button>
+            </div>
+        );
+    }
+}
+
+const highlightMove = () => {
+
+}
+
+const loadSpecies_DC_Edition = (member) => {
+    const speciesSelectors = document.querySelectorAll(".speciesSelector");
+    const levelBars = document.querySelectorAll(".levelBar");
+    const abilitySelectors = document.querySelectorAll(".abilitySelector");
+    const natureSelectors = document.querySelectorAll(".natureSelector");
+    const itemSelectors = document.querySelectorAll(".itemSelector");
+    const baseHPSections = document.querySelectorAll(".baseHP");
+    const HPIVBars = document.querySelectorAll(".HPIVBar");
+    const HPEVBars = document.querySelectorAll(".HPEVBar");
+    const finalHPSections = document.querySelectorAll(".finalHP");
+    const baseAttackSections = document.querySelectorAll(".baseAttack");
+    const attackIVBars = document.querySelectorAll(".attackIVBar");
+    const attackEVBars = document.querySelectorAll(".attackEVBar");
+    const attackStageBars = document.querySelectorAll(".attackStageBar");
+    const finalAttackSections = document.querySelectorAll(".finalAttack");
+    const baseDefenseSections = document.querySelectorAll(".baseDefense");
+    const defenseIVBars = document.querySelectorAll(".defenseIVBar");
+    const defenseEVBars = document.querySelectorAll(".defenseEVBar");
+    const defenseStageBars = document.querySelectorAll(".defenseStageBar");
+    const finalDefenseSections = document.querySelectorAll(".finalDefense");
+    const baseSpecialAttackSections = document.querySelectorAll(".baseSpecialAttack");
+    const specialAttackIVBars = document.querySelectorAll(".specialAttackIVBar");
+    const specialAttackEVBars = document.querySelectorAll(".specialAttackEVBar");
+    const specialAttackStageBars = document.querySelectorAll(".specialAttackStageBar");
+    const finalSpecialAttackSections = document.querySelectorAll(".finalSpecialAttack");
+    const baseSpecialDefenseSections = document.querySelectorAll(".baseSpecialDefense");
+    const specialDefenseIVBars = document.querySelectorAll(".specialDefenseIVBar");
+    const specialDefenseEVBars = document.querySelectorAll(".specialDefenseEVBar");
+    const specialDefenseStageBars = document.querySelectorAll(".specialDefenseStageBar");
+    const finalSpecialDefenseSections = document.querySelectorAll(".finalSpecialDefense");
+    const baseSpeedSections = document.querySelectorAll(".baseSpeed");
+    const speedIVBars = document.querySelectorAll(".speedIVBar");
+    const speedEVBars = document.querySelectorAll(".speedEVBar");
+    const speedStageBars = document.querySelectorAll(".speedStageBar");
+    const finalSpeedSections = document.querySelectorAll(".finalSpeed");
+    const moveSelectors = document.querySelectorAll(".moveSelector1") + document.querySelectorAll(".moveSelector2") + document.querySelectorAll(".moveSelector3") + document.querySelectorAll(".moveSelector4");
+
+    if (speciesSelectors[memberNumber].value != "NONE") {
+        const species = JSON.parse(speciesSelectors[memberNumber].value);
+
+        levelBars[memberNumber].value = 100;
+        natureSelectors[memberNumber].value = natureSelectors[memberNumber].find((nature) => { nature.value.name == "serious" });
+        itemSelectors[memberNumber].value = "NONE";
+
+        baseHPSections[memberNumber].innerHTML = species["stats"][0][base_stat];
+        baseAttackSections[memberNumber].innerHTML = species["stats"][1][base_stat];
+        baseDefenseSections[memberNumber].innerHTML = species["stats"][2][base_stat];
+        baseSpecialAttackSections[memberNumber].innerHTML = species["stats"][3][base_stat];
+        baseSpecialDefenseSections[memberNumber].innerHTML = species["stats"][4][base_stat];
+        baseSpeedSections[memberNumber].innerHTML = species["stats"][5][base_stat];
+
+        HPIVBars[memberNumber].value = 31;
+        attackIVBars[memberNumber].value = 31;
+        defenseIVBars[memberNumber].value = 31;
+        specialAttackIVBars[memberNumber].value = 31;
+        specialDefenseIVBars[memberNumber].value = 31;
+        speedIVBars[memberNumber].value = 31;
+
+        HPEVBars[memberNumber].value = 0;
+        attackEVBars[memberNumber].value = 0;
+        defenseEVBars[memberNumber].value = 0;
+        specialAttackEVBars[memberNumber].value = 0;
+        specialDefenseEVBars[memberNumber].value = 0;
+        speedEVBars[memberNumber].value = 0;
+
+        attackStageBars[memberNumber].value = 0;
+        defenseStageBars[memberNumber].value = 0;
+        specialAttackStageBars[memberNumber].value = 0;
+        specialDefenseStageBars[memberNumber].value = 0;
+        speedStageBars[memberNumber].value = 0;
+
+        calcStats_DC_Edition(memberNumber);
+
+        let abilities = [];
+        species["abilities"].forEach(ability => {
+            abilities.push(abilityData.find(data => data.name === ability.name));
+        });
+        abilitySelectors[memberNumber].innerHTML = `${abilities.map(ability => `<option value="${ability}">${reformatName(ability.name)}</option>`).join("")}`;
+
+        let moves = [];
+        species["moves"].forEach(move => {
+            moves.push(moveData.find(data => data.name === move.name));
+        });
+
+        moveSelectors[memberNumber * 4].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 1].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 2].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 3].innerHTML = `<option value="NONE">---Select Move---</option>`;
+
+        moveSelectors[memberNumber * 4].innerHTML += `${moves.map(move => `<option value="${move}">${reformatName(move.name)}</option>`).join("")}`;
+        moveSelectors[(memberNumber * 4) + 1].innerHTML += `${moves.map(move => `<option value="${move}">${reformatName(move.name)}</option>`).join("")}`;
+        moveSelectors[(memberNumber * 4) + 2].innerHTML += `${moves.map(move => `<option value="${move}">${reformatName(move.name)}</option>`).join("")}`;
+        moveSelectors[(memberNumber * 4) + 3].innerHTML += `${moves.map(move => `<option value="${move}">${reformatName(move.name)}</option>`).join("")}`;
+    }
+    else {
+        levelBars[memberNumber].value = 100;
+        abilitySelectors[memberNumber].innerHTML = "";
+        natureSelectors[memberNumber].value = natureSelectors[memberNumber].find((nature) => { nature.value.name == "serious" });
+        itemSelectors[memberNumber].value = "NONE";
+
+        baseHPSections[memberNumber].innerHTML = "";
+        baseAttackSections[memberNumber].innerHTML = "";
+        baseDefenseSections[memberNumber].innerHTML = "";
+        baseSpecialAttackSections[memberNumber].innerHTML = "";
+        baseSpecialDefenseSections[memberNumber].innerHTML = "";
+        baseSpeedSections[memberNumber].innerHTML = "";
+
+        HPIVBars[memberNumber].value = 31;
+        attackIVBars[memberNumber].value = 31;
+        defenseIVBars[memberNumber].value = 31;
+        specialAttackIVBars[memberNumber].value = 31;
+        specialDefenseIVBars[memberNumber].value = 31;
+        speedIVBars[memberNumber].value = 31;
+
+        HPEVBars[memberNumber].value = 0;
+        attackEVBars[memberNumber].value = 0;
+        defenseEVBars[memberNumber].value = 0;
+        specialAttackEVBars[memberNumber].value = 0;
+        specialDefenseEVBars[memberNumber].value = 0;
+        speedEVBars[memberNumber].value = 0;
+
+        attackStageBars[memberNumber].value = 0;
+        defenseStageBars[memberNumber].value = 0;
+        specialAttackStageBars[memberNumber].value = 0;
+        specialDefenseStageBars[memberNumber].value = 0;
+        speedStageBars[memberNumber].value = 0;
+
+        finalHPSections[memberNumber].innerHTML = "";
+        finalAttackSections[memberNumber].innerHTML = "";
+        finalDefenseSections[memberNumber].innerHTML = "";
+        finalSpecialAttackSections[memberNumber].innerHTML = "";
+        finalSpecialDefenseSections[memberNumber].innerHTML = "";
+        finalSpeedSections[memberNumber].innerHTML = "";
+
+        moveSelectors[memberNumber * 4].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 1].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 2].innerHTML = `<option value="NONE">---Select Move---</option>`;
+        moveSelectors[(memberNumber * 4) + 3].innerHTML = `<option value="NONE">---Select Move---</option>`;
+    }
+}
+
+const calcStats_DC_Edition = (member) => {
+    const levelBars = document.querySelectorAll(".levelBar");
+    const natureSelectors = document.querySelectorAll(".natureSelector");
+    const baseHPSections = document.querySelectorAll(".baseHP");
+    const HPIVBars = document.querySelectorAll(".HPIVBar");
+    const HPEVBars = document.querySelectorAll(".HPEVBar");
+    const finalHPSections = document.querySelectorAll(".finalHP");
+    const baseAttackSections = document.querySelectorAll(".baseAttack");
+    const attackIVBars = document.querySelectorAll(".attackIVBar");
+    const attackEVBars = document.querySelectorAll(".attackEVBar");
+    const attackStageBars = document.querySelectorAll(".attackStageBar");
+    const finalAttackSections = document.querySelectorAll(".finalAttack");
+    const baseDefenseSections = document.querySelectorAll(".baseDefense");
+    const defenseIVBars = document.querySelectorAll(".defenseIVBar");
+    const defenseEVBars = document.querySelectorAll(".defenseEVBar");
+    const defenseStageBars = document.querySelectorAll(".defenseStageBar");
+    const finalDefenseSections = document.querySelectorAll(".finalDefense");
+    const baseSpecialAttackSections = document.querySelectorAll(".baseSpecialAttack");
+    const specialAttackIVBars = document.querySelectorAll(".specialAttackIVBar");
+    const specialAttackEVBars = document.querySelectorAll(".specialAttackEVBar");
+    const specialAttackStageBars = document.querySelectorAll(".specialAttackStageBar");
+    const finalSpecialAttackSections = document.querySelectorAll(".finalSpecialAttack");
+    const baseSpecialDefenseSections = document.querySelectorAll(".baseSpecialDefense");
+    const specialDefenseIVBars = document.querySelectorAll(".specialDefenseIVBar");
+    const specialDefenseEVBars = document.querySelectorAll(".specialDefenseEVBar");
+    const specialDefenseStageBars = document.querySelectorAll(".specialDefenseStageBar");
+    const finalSpecialDefenseSections = document.querySelectorAll(".finalSpecialDefense");
+    const baseSpeedSections = document.querySelectorAll(".baseSpeed");
+    const speedIVBars = document.querySelectorAll(".speedIVBar");
+    const speedEVBars = document.querySelectorAll(".speedEVBar");
+    const speedStageBars = document.querySelectorAll(".speedStageBar");
+    const finalSpeedSections = document.querySelectorAll(".finalSpeed");
+
+    const nature = JSON.parse(natureSelectors[memberNumber].value);
+
+    if (baseHPSections[memberNumber] && baseAttackSections[memberNumber] && baseDefenseSections[memberNumber] && baseSpecialAttackSections[memberNumber] && baseSpecialDefenseSections[memberNumber] && baseSpeedSections[memberNumber]) {
+        let attackNatureMultiplier = 1.0;
+        let defenseNatureMultiplier = 1.0;
+        let specialAttackNatureMultiplier = 1.0;
+        let specialDefenseNatureMultiplier = 1.0;
+        let speedNatureMultiplier = 1.0;
+
+        if (nature.increased_stat.name === "attack") {
+            attackNatureMultiplier = 1.1;
+        }
+        else if (nature.increased_stat.name === "defense") {
+            defenseNatureMultiplier = 1.1;
+        }
+        else if (nature.increased_stat.name === "special-attack") {
+            specialAttackNatureMultiplier = 1.1;
+        }
+        else if (nature.increased_stat.name === "special-defense") {
+            specialDefenseNatureMultiplier = 1.1;
+        }
+        else if (nature.increased_stat.name === "speed") {
+            speedNatureMultiplier = 1.1;
+        }
+
+        if (nature.decreased_stat.name === "attack") {
+            attackNatureMultiplier = 0.9;
+        }
+        else if (nature.decreased_stat.name === "defense") {
+            defenseNatureMultiplier = 0.9;
+        }
+        else if (nature.decreased_stat.name === "special-attack") {
+            specialAttackNatureMultiplier = 0.9;
+        }
+        else if (nature.decreased_stat.name === "special-defense") {
+            specialDefenseNatureMultiplier = 0.9;
+        }
+        else if (nature.decreased_stat.name === "speed") {
+            speedNatureMultiplier = 0.9;
+        }
+
+        finalHPSections[memberNumber].innerHTML = Math.floor(((2 * Number(baseHPSections[memberNumber].innerHTML) + HPIVBars[memberNumber].value + Math.floor(HPEVBars[memberNumber] / 4)) * levelBars[memberNumber]) / 100) + levelBars[memberNumber] + 10;
+        finalAttackSections[memberNumber].innerHTML = Math.floor((Math.floor(((2 * Number(baseAttackSections[memberNumber].innerHTML) + attackIVBars[memberNumber].value + Math.floor(attackEVBars[memberNumber].value / 4)) * levelBars[memberNumber]) / 100) + 5) * Number(attackNatureMultiplier));
+        finalDefenseSections[memberNumber].innerHTML = Math.floor((Math.floor(((2 * Number(baseDefenseSections[memberNumber].innerHTML) + defenseIVBars[memberNumber].value + Math.floor(defenseEVBars[memberNumber].value / 4)) * levelBars[memberNumber]) / 100) + 5) * Number(defenseNatureMultiplier));
+        finalSpecialAttackSections[memberNumber].innerHTML = Math.floor((Math.floor(((2 * Number(baseSpecialAttackSections[memberNumber].innerHTML) + specialAttackIVBars[memberNumber].value + Math.floor(specialAttackEVBars[memberNumber].value / 4)) * levelBars[memberNumber]) / 100) + 5) * Number(specialAttackNatureMultiplier));
+        finalSpecialDefenseSections[memberNumber].innerHTML = Math.floor((Math.floor(((2 * Number(baseSpecialDefenseSections[memberNumber].innerHTML) + specialDefenseIVBars[memberNumber].value + Math.floor(specialDefenseEVBars[memberNumber].value / 4)) * levelBars[memberNumber]) / 100) + 5) * Number(specialDefenseNatureMultiplier));
+        finalSpeedSections[memberNumber].innerHTML = Math.floor((Math.floor(((2 * Number(baseSpeedSections[memberNumber].innerHTML) + speedIVBars[memberNumber].value + Math.floor(speedEVBars[memberNumber].value / 4)) * levelBars[memberNumber]) / 100) + 5) * Number(speedNatureMultiplier));
+
+        if (attackStageBars[memberNumber].value === 1) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 1.5;
+        }
+        else if (attackStageBars[memberNumber].value === 2) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 2;
+        }
+        else if (attackStageBars[memberNumber].value === 3) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 2.5;
+        }
+        else if (attackStageBars[memberNumber].value === 4) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 3;
+        }
+        else if (attackStageBars[memberNumber].value === 5) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 3.5;
+        }
+        else if (attackStageBars[memberNumber].value === 6) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) * 4;
+        }
+        if (attackStageBars[memberNumber].value === -1) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 1.5;
+        }
+        else if (attackStageBars[memberNumber].value === -2) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 2;
+        }
+        else if (attackStageBars[memberNumber].value === -3) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 2.5;
+        }
+        else if (attackStageBars[memberNumber].value === -4) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 3;
+        }
+        else if (attackStageBars[memberNumber].value === -5) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 3.5;
+        }
+        else if (attackStageBars[memberNumber].value === -6) {
+            finalAttackSections[memberNumber].innerHTML = Number(finalAttackSections[memberNumber].innerHTML) / 4;
+        }
+
+        if (defenseStageBars[memberNumber].value === 1) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 1.5;
+        }
+        else if (defenseStageBars[memberNumber].value === 2) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 2;
+        }
+        else if (defenseStageBars[memberNumber].value === 3) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 2.5;
+        }
+        else if (defenseStageBars[memberNumber].value === 4) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 3;
+        }
+        else if (defenseStageBars[memberNumber].value === 5) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 3.5;
+        }
+        else if (defenseStageBars[memberNumber].value === 6) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) * 4;
+        }
+        if (defenseStageBars[memberNumber].value === -1) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 1.5;
+        }
+        else if (defenseStageBars[memberNumber].value === -2) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 2;
+        }
+        else if (defenseStageBars[memberNumber].value === -3) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 2.5;
+        }
+        else if (defenseStageBars[memberNumber].value === -4) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 3;
+        }
+        else if (defenseStageBars[memberNumber].value === -5) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 3.5;
+        }
+        else if (defenseStageBars[memberNumber].value === -6) {
+            finalDefenseSections[memberNumber].innerHTML = Number(finalDefenseSections[memberNumber].innerHTML) / 4;
+        }
+
+        if (specialAttackStageBars[memberNumber].value === 1) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 1.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === 2) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 2;
+        }
+        else if (specialAttackStageBars[memberNumber].value === 3) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 2.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === 4) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 3;
+        }
+        else if (specialAttackStageBars[memberNumber].value === 5) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 3.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === 6) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) * 4;
+        }
+        if (specialAttackStageBars[memberNumber].value === -1) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 1.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === -2) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 2;
+        }
+        else if (specialAttackStageBars[memberNumber].value === -3) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 2.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === -4) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 3;
+        }
+        else if (specialAttackStageBars[memberNumber].value === -5) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 3.5;
+        }
+        else if (specialAttackStageBars[memberNumber].value === -6) {
+            finalSpecialAttackSections[memberNumber].innerHTML = Number(finalSpecialAttackSections[memberNumber].innerHTML) / 4;
+        }
+
+        if (specialDefenseStageBars[memberNumber].value === 1) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 1.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === 2) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 2;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === 3) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 2.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === 4) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 3;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === 5) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 3.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === 6) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) * 4;
+        }
+        if (specialDefenseStageBars[memberNumber].value === -1) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 1.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === -2) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 2;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === -3) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 2.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === -4) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 3;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === -5) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 3.5;
+        }
+        else if (specialDefenseStageBars[memberNumber].value === -6) {
+            finalSpecialDefenseSections[memberNumber].innerHTML = Number(finalSpecialDefenseSections[memberNumber].innerHTML) / 4;
+        }
+
+        if (speedStageBars[memberNumber].value === 1) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 1.5;
+        }
+        else if (speedStageBars[memberNumber].value === 2) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 2;
+        }
+        else if (speedStageBars[memberNumber].value === 3) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 2.5;
+        }
+        else if (speedStageBars[memberNumber].value === 4) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 3;
+        }
+        else if (speedStageBars[memberNumber].value === 5) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 3.5;
+        }
+        else if (speedStageBars[memberNumber].value === 6) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) * 4;
+        }
+        if (speedStageBars[memberNumber].value === -1) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 1.5;
+        }
+        else if (speedStageBars[memberNumber].value === -2) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 2;
+        }
+        else if (speedStageBars[memberNumber].value === -3) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 2.5;
+        }
+        else if (speedStageBars[memberNumber].value === -4) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 3;
+        }
+        else if (speedStageBars[memberNumber].value === -5) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 3.5;
+        }
+        else if (speedStageBars[memberNumber].value === -6) {
+            finalSpeedSections[memberNumber].innerHTML = Number(finalSpeedSections[memberNumber].innerHTML) / 4;
+        }
+    }
+}
+
+const calcDamage = (attackerNumber, defenderNumber) => {
+    const speciesSelectors = document.querySelectorAll(".speciesSelector");
+    const finalHPSections = document.querySelectorAll(".finalHP");
+    const finalAttackSections = document.querySelectorAll(".finalAttack");
+    const finalDefenseSections = document.querySelectorAll(".finalDefense");
+    const finalSpecialAttackSections = document.querySelectorAll(".finalSpecialAttack");
+    const finalSpecialDefenseSections = document.querySelectorAll(".finalSpecialDefense");
+    const finalSpeedSections = document.querySelectorAll(".finalSpeed");
+    const moveButtons = document.querySelectorAll(".moveButton");
+    const moveSelectors = document.querySelectorAll(".moveSelector");
+    const individualCalcAreas = document.querySelectorAll(".individualCalc");
+
+    for (let i = attackerNumber * 4; i < (attackerNumber * 4 + 3); i++) {
+        moveButtons[i].innerHTML = reformatName(moveSelectors[i].value.name);
+    }
+
+    let attackingStat;
+    let defendingStat;
+    let basePower;
+
+    for (let i = 0; i < individualCalcAreas.length; i++) {
+        if (moveSelectors[i].value.damage_class === "status") {
+            individualCalcAreas[i].innerHTML = `0%-0%`;
+        }
+        else if (moveSelectors[i].value.damage_class === "physical") {
+            if (i < 4) {
+                attackingStat = finalAttackSections[0].value;
+                defendingStat = finalDefenseSections[1].value;
+            }
+            else {
+                attackingStat = finalAttackSections[1].value;
+                defendingStat = finalDefenseSections[0].value;
+            }
+        }
+        else if (moveSelectors[i].value.damage_class === "special") {
+            if (i < 4) {
+                attackingStat = finalSpecialAttackSections[0].value;
+                defendingStat = finalSpecialDefenseSections[1].value;
+            }
+            else {
+                attackingStat = finalSpecialAttackSections[1].value;
+                defendingStat = finalSpecialDefenseSections[0].value;
+            }
+        }
+
+        basePower = moveSelectors[i].value.power;
+    }
+}
+
+const DamageCalculatorWindow = (props) => {
+    return (
+        <div id="calculator">
+            <div id="pokemon1Moves">
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+            </div>
+            <div id="pokemon2Moves">
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <p className="individualCalc">0%-0%</p>
+            </div>
+            <div id="calcs">
+                <p id="range">
+
+                </p>
+                <p id="values">
+
+                </p>
+            </div>
+            <div id="pokemon1Data" className="pokemonData">
+                <label htmlFor="species">Species: </label>
+                <select className="speciesSelector" name="species" onChange={loadSpecies_DC_Edition(0)}>
+                    <option value="NONE">---Species---</option>
+                </select>
+                {/* <select className="setSelector">
+                    <option value="NONE">---BLANK---</option>
+                </select> */}
+                <label htmlFor="level">Level: </label>
+                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="ability">Ability: </label>
+                <select className="abilitySelector" name="ability">
+                </select>
+                <label htmlFor="nature">Nature: </label>
+                <select className="natureSelector" name="nature" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]}>
+                </select>
+                <label htmlFor="item">Held Item: </label>
+                <select className="itemSelector" name="item" onChange={calcDamage(0, 1)}>
+                </select>
+                <label>HP: </label>
+                <div className="baseHP"></div>
+                <label htmlFor="HPIVs">IVs: </label>
+                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="HPEVs">EVs: </label>
+                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalHP"></div>
+                <label>Attack: </label>
+                <div className="baseAttack"></div>
+                <label htmlFor="attackIVs">IVs: </label>
+                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="attackEVs">EVs: </label>
+                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalAttack"></div>
+                <label>Defense: </label>
+                <div className="baseDefense"></div>
+                <label htmlFor="defenseIVs">IVs: </label>
+                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="defenseEVs">EVs: </label>
+                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalDefense"></div>
+                <label>Special Attack: </label>
+                <div className="baseSpecialAttack"></div>
+                <label htmlFor="specialAttackIVs">IVs: </label>
+                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="specialAttackEVs">EVs: </label>
+                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalSpecialAttack"></div>
+                <label>Special Defense: </label>
+                <div className="baseSpecialDefense"></div>
+                <label htmlFor="specialDefenseIVs">IVs: </label>
+                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="specialDefenseEVs">EVs: </label>
+                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalSpecialDefense"></div>
+                <label>Speed: </label>
+                <div className="baseSpeed"></div>
+                <label htmlFor="speedIVs">IVs: </label>
+                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <label htmlFor="speedEVs">EVs: </label>
+                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
+                <div className="finalSpeed"></div>
+                <label htmlFor="moves">Moves: </label>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE">---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE">---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE">---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE">---Select Move---</option>
+                </select>
+            </div>
+            <div id="fieldStates">
+                <div id="field">
+                    <select id="weather" onChange={[calcDamage(0, 1), calcDamage(1, 0)]}>
+                        <option value="None">None</option>
+                        <option value="Sun">Sun</option>
+                        <option value="Rain">Rain</option>
+                        <option value="Sand">Sand</option>
+                        <option value="Snow">Snow</option>
+                        <option value="Desolate Land">Desolate Land</option>
+                        <option value="Primordial Sea">Primordial Sea</option>
+                        <option value="Delta Stream">Delta Stream</option>
+                    </select>
+                    <select id="terrain" onChange={[calcDamage(0, 1), calcDamage(1, 0)]}>
+                        <option value="None">None</option>
+                        <option value="Electric Terrain">Electric Terrain</option>
+                        <option value="Psychic Terrain">Psychic Terrain</option>
+                        <option value="Grassy Terrain">Grassy Terrain</option>
+                        <option value="Misty Terrain">Misty Terrain</option>
+                    </select>
+                </div>
+                <div id="side1effects">
+                    <input type="checkbox" name="reflect" onChange={calcDamage(0, 1)} />
+                    <label htmlFor="reflect">Reflect</label>
+                    <input type="checkbox" name="lightscreen" onChange={calcDamage(0, 1)} />
+                    <label htmlFor="lightscreen">Light Screen</label>
+                    <input type="checkbox" name="auroraveil" onChange={calcDamage(0, 1)} />
+                    <label htmlFor="auroraveil">Aurora Veil</label>
+                </div>
+                <div id="side2effects">
+                    <label htmlFor="reflect">Reflect</label>
+                    <input type="checkbox" name="reflect" onChange={calcDamage(1, 0)} />
+                    <label htmlFor="lightscreen">Light Screen</label>
+                    <input type="checkbox" name="lightscreen" onChange={calcDamage(1, 0)} />
+                    <label htmlFor="auroraveil">Aurora Veil</label>
+                    <input type="checkbox" name="auroraveil" onChange={calcDamage(1, 0)} />
+                </div>
+            </div>
+            <div id="pokemon2Data" className="pokemonData">
+                <label htmlFor="species">Species: </label>
+                <select className="speciesSelector" name="species" onChange={loadSpecies_DC_Edition(1)}>
+                    <option value="NONE">---Species---</option>
+                </select>
+                {/* <select className="setSelector">
+                    <option value="NONE">---BLANK---</option>
+                </select> */}
+                <label htmlFor="level">Level: </label>
+                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="ability">Ability: </label>
+                <select className="abilitySelector" name="ability">
+                </select>
+                <label htmlFor="nature">Nature: </label>
+                <select className="natureSelector" name="nature" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]}>
+                </select>
+                <label htmlFor="item">Held Item: </label>
+                <select className="itemSelector" name="item" onChange={calcDamage(0, 1)}>
+                </select>
+                <label>HP: </label>
+                <div className="baseHP"></div>
+                <label htmlFor="HPIVs">IVs: </label>
+                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="HPEVs">EVs: </label>
+                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalHP"></div>
+                <label>Attack: </label>
+                <div className="baseAttack"></div>
+                <label htmlFor="attackIVs">IVs: </label>
+                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="attackEVs">EVs: </label>
+                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalAttack"></div>
+                <label>Defense: </label>
+                <div className="baseDefense"></div>
+                <label htmlFor="defenseIVs">IVs: </label>
+                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="defenseEVs">EVs: </label>
+                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalDefense"></div>
+                <label>Special Attack: </label>
+                <div className="baseSpecialAttack"></div>
+                <label htmlFor="specialAttackIVs">IVs: </label>
+                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="specialAttackEVs">EVs: </label>
+                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalSpecialAttack"></div>
+                <label>Special Defense: </label>
+                <div className="baseSpecialDefense"></div>
+                <label htmlFor="specialDefenseIVs">IVs: </label>
+                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="specialDefenseEVs">EVs: </label>
+                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalSpecialDefense"></div>
+                <label>Speed: </label>
+                <div className="baseSpeed"></div>
+                <label htmlFor="speedIVs">IVs: </label>
+                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <label htmlFor="speedEVs">EVs: </label>
+                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(1), calcDamage(1, 0)]} />
+                <div className="finalSpeed"></div>
+                <label htmlFor="moves">Moves: </label>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE" onChange={calcDamage(1, 0)}>---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE" onChange={calcDamage(1, 0)}>---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE" onChange={calcDamage(1, 0)}>---Select Move---</option>
+                </select>
+                <select className="moveSelector" name="moves">
+                    <option value="NONE" onChange={calcDamage(1, 0)}>---Select Move---</option>
+                </select>
+            </div>
+        </div>
+    );
+}
+
 const init = async () => {
     const changePasswordButton = document.getElementById('changePassword');
+    const premiumButton = document.getElementById('premium');
+    const calculatorButton = document.getElementById('calculator');
 
     changePasswordButton.addEventListener('click', (e) => {
         e.preventDefault();
         ReactDOM.render(<ChangePasswordWindow />,
+            document.getElementById('content'));
+        return false;
+    });
+
+    premiumButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        ReactDOM.render(<PremiumWindow />,
+            document.getElementById('content'));
+        return false;
+    });
+
+    calculatorButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        ReactDOM.render(<DamageCalculatorWindow />,
             document.getElementById('content'));
         return false;
     });
@@ -1290,11 +2029,12 @@ const init = async () => {
         document.getElementById('Team')
     );
 
-    pokemonData = loadAllData(`/pokemonData`);
-    moveData = loadAllData(`/moveData`);
-    abilityData = loadAllData(`/abilityData`);
-    itemData = loadAllData(`/itemData`);
-    natureData = loadAllData(`/natureData`);
+    pokemonData = loadData(`/pokemonData`);
+    moveData = loadData(`/moveData`);
+    abilityData = loadData(`/abilityData`);
+    itemData = loadData(`/itemData`);
+    natureData = loadData(`/natureData`);
+    typeData = loadData(`/typeData`);
 
     const speciesSelectors = document.querySelectorAll(".speciesSelector");
     const natureSelectors = document.querySelectorAll(".natureSelector");

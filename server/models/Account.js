@@ -33,6 +33,10 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  premium: {
+    type: Boolean,
+    required: true
+  },
   createdDate: {
     type: Date,
     default: Date.now,
@@ -43,6 +47,7 @@ const AccountSchema = new mongoose.Schema({
 AccountSchema.statics.toAPI = (doc) => ({
   username: doc.username,
   _id: doc._id,
+  premium: doc.premium
 });
 
 // Helper function to hash a password
@@ -95,6 +100,10 @@ AccountSchema.statics.changePassword = async (username, oldpassword, newpassword
     return callback(err);
   }
 };
+
+AccountSchema.statics.togglePremiumStatus = async () => {
+  premium = !premium;
+}
 
 AccountModel = mongoose.model('Account', AccountSchema);
 module.exports = AccountModel;
