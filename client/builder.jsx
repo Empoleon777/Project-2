@@ -1,9 +1,14 @@
-// import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
-// import '@splidejs/react-splide/css';
-const helper = require('./helper.js');
-const React = require('react');
-const ReactDOM = require('react-dom');
-const { find } = require('underscore');
+import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+import * as helper from '/helper.js';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {find} from 'underscore';
+
+// const helper = require('./helper.js');
+// const React = require('react');
+// const ReactDOM = require('react-dom');
+// const { find } = require('underscore');
 
 let pokemonData;
 let abilityData;
