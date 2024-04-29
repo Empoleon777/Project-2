@@ -1299,8 +1299,18 @@ const PremiumWindow = (props) => {
     }
 }
 
-const highlightMove = () => {
+const highlightMove = (damage) => {
+    const calcs = document.querySelector("#calcs");
 
+    calcs.innerHTML = "";
+
+    for (let i = 0.85; i <= 1; i += 0.01) {
+        calcs.innerHTML += damage * i;
+
+        if (i != 1) {
+            calcs.innerHTML += ", ";
+        }
+    }
 }
 
 const loadSpecies_DC_Edition = (member) => {
@@ -1715,6 +1725,7 @@ const calcStats_DC_Edition = (member) => {
 const calcDamage = (attackerNumber, defenderNumber) => {
     const speciesSelectors = document.querySelectorAll(".speciesSelector");
     const finalHPSections = document.querySelectorAll(".finalHP");
+    const currHPSections = document.querySelectorAll(".currHP");
     const finalAttackSections = document.querySelectorAll(".finalAttack");
     const finalDefenseSections = document.querySelectorAll(".finalDefense");
     const finalSpecialAttackSections = document.querySelectorAll(".finalSpecialAttack");
@@ -1723,6 +1734,9 @@ const calcDamage = (attackerNumber, defenderNumber) => {
     const moveButtons = document.querySelectorAll(".moveButton");
     const moveSelectors = document.querySelectorAll(".moveSelector");
     const individualCalcAreas = document.querySelectorAll(".individualCalc");
+    const weather = document.querySelector("#weather");
+    const terrain = document.querySelector("#terrain");
+
 
     for (let i = attackerNumber * 4; i < (attackerNumber * 4 + 3); i++) {
         moveButtons[i].innerHTML = reformatName(moveSelectors[i].value.name);
@@ -1730,67 +1744,183 @@ const calcDamage = (attackerNumber, defenderNumber) => {
 
     let attackingStat;
     let defendingStat;
+    let attackerSpeed;
+    let defenderSpeed;
     let basePower;
+    let damage;
 
-    for (let i = 0; i < individualCalcAreas.length; i++) {
+    for (let i = attackerNumber * 4; i < (attackerNumber * 4) + 3; i++) {
         if (moveSelectors[i].value.damage_class === "status") {
             individualCalcAreas[i].innerHTML = `0%-0%`;
         }
-        else if (moveSelectors[i].value.damage_class === "physical") {
-            if (i < 4) {
-                attackingStat = finalAttackSections[0].value;
-                defendingStat = finalDefenseSections[1].value;
+        else {
+            if (moveSelectors[i].value.damage_class === "physical") {
+                attackingStat = finalAttackSections[attackerNumber];
+                defendingStat = finalDefenseSections[defenderNumber];
             }
-            else {
-                attackingStat = finalAttackSections[1].value;
-                defendingStat = finalDefenseSections[0].value;
-            }
-        }
-        else if (moveSelectors[i].value.damage_class === "special") {
-            if (i < 4) {
-                attackingStat = finalSpecialAttackSections[0].value;
-                defendingStat = finalSpecialDefenseSections[1].value;
-            }
-            else {
-                attackingStat = finalSpecialAttackSections[1].value;
-                defendingStat = finalSpecialDefenseSections[0].value;
-            }
-        }
+            else if (moveSelectors[i].value.damage_class === "special") {
+                attackingStat = finalSpecialAttackSections[attackerNumber];
+                defendingStat = finalSpecialDefenseSections[defenderNumber];
 
-        basePower = moveSelectors[i].value.power;
+                if (moveSelectors[i].value.name === "psyshock" || moveSelectors[i].value.name === "psystrike") {
+                    defendingStat = finalDefenseSections[defenderNumber];
+                }
+            }
+
+            if (moveSelectors[i].value.name === "electro-ball") {
+                attackerSpeed = finalSpeedSections[attackerNumber];
+                defenderSpeed = finalSpeedSections[defenderNumber];
+
+                if (attackerSpeed - defenderSpeed <= 0) {
+                    basePower = 40;
+                }
+                else if ((defenderSpeed / attackerSpeed > 50) && attackerSpeed - defenderSpeed >= 0) {
+                    basePower = 60;
+                }
+                else if (defenderSpeed / attackerSpeed > 33.34) {
+                    basePower = 80;
+                }
+                else if (defenderSpeed / attackerSpeed > 25) {
+                    basePower = 120;
+                }
+                else {
+                    basePower = 150;
+                }
+            }
+            else if (moveSelectors[i].value.name === "gyro-ball") {
+                basePower = Math.floor((25 * defenderSpeed / attackerSpeed) + 1);
+            }
+            else if (moveSelectors[i].value.name === "return" || moveSelectors[i].value.name === "frustration") {
+                basePower = 102;
+            }
+            else if (moveSelectors[i].value.name === "wring-out") {
+                basePower = 120 * (Number(currHPSections[defenderNumber].innerHTML) / finalHPSections[defenderNumber]);
+            }
+            else if (moveSelectors[i].value.name === "eruption" || moveSelectors[i].value.name === "water-spout") {
+                basePower = (Number(currHPSections[attackerNumber].innerHTML) * 150) / finalHPSections[attackerNumber].value;
+            }
+            else {
+                basePower = moveSelectors[i].value.power;
+            }
+
+            damage = ((((((2 * levelBars[attackerNumber].value) / 5) + 2) * basePower) * (attackingStat / defendingStat) / 50) + 2);
+
+            if (moveSelectors[i].value.type === speciesSelectors[attackerNumber].value.types[0].type.name || moveSelectors[i].value.type === speciesSelectors[attackerNumber].value.types[1].type.name) {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "water" && weather.value === "Rain") {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "fire" && weather.value === "Rain") {
+                damage / 2;
+            }
+
+            if (moveSelectors[i].value.type === "water" && weather.value === "Sun") {
+                damage / 2;
+            }
+
+            if (moveSelectors[i].value.type === "fire" && weather.value === "Sun") {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "electric" && terrain.value === "Electric Terrain") {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "psychic" && terrain.value === "Psychic Terrain") {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "grass" && terrain.value === "Grassy Terrain") {
+                damage *= 1.5;
+            }
+
+            if (moveSelectors[i].value.type === "fairy" && terrain.value === "Misty Terrain") {
+                damage *= 1.5;
+            }
+
+            let defendingTypeA, defendingTypeB;
+
+            defendingTypeA = speciesSelectors[defenderNumber].value.type[0].type.name;
+
+            defendingTypeA = typeData.find((type) => { type.name === speciesSelectors[defenderNumber].value.type[0].type.name });
+
+            if (speciesSelectors[defenderNumber].value.type[1]) {
+                defendingTypeB = typeData.find((type) => { type.name === speciesSelectors[defenderNumber].value.type[1].type.name });
+            }
+
+            if (defendingTypeA["double_damage_from"].find((type) => { type.name === moveSelectors[i].value.type })) {
+                damage *= 2;
+            }
+
+            if (defendingTypeA["half_damage_from"].find((type) => { type.name === moveSelectors[i].value.type })) {
+                damage /= 2;
+            }
+
+            if (moveSelectors[i].value.name === "freeze-dry" && defendingTypeA.name === "water") {
+                damage *= 2;
+            }
+
+            if (defendingTypeB) {
+                if (defendingTypeB["double_damage_from"].find((type) => { type.name === moveSelectors[i].value.type })) {
+                    damage *= 2;
+                }
+
+                if (defendingTypeB["half_damage_from"].find((type) => { type.name === moveSelectors[i].value.type })) {
+                    damage /= 2;
+                }
+
+                if (moveSelectors[i].value.name === "freeze-dry" && defendingTypeB.name === "water") {
+                    damage *= 2;
+                }
+            }
+
+            if (defendingTypeA["no_damage_from"].find((type) => { type.name === moveSelectors[i].value.type })) {
+                damage *= 0;
+            }
+
+            individualCalcAreas[i].innerHTML = `${damage * 0.85}-${damage}`;
+
+            moveButtons[i].onClick = highlightMove(damage);
+        }
     }
+}
+
+const calcCurrHP = (fighterNumber) => {
+    const finalHPSections = document.querySelectorAll(".finalHP");
+    const currHPPercentageBars = document.querySelectorAll(".currHPPercentageBar");
+    const currHPSections = document.querySelectorAll(".currHP");
+
+    currHPSections[fighterNumber].innerHTML = Number(finalHPSections[fighterNumber]) * (currHPPercentageBars[fighterNumber].value / 100);
 }
 
 const DamageCalculatorWindow = (props) => {
     return (
         <div id="calculator">
             <div id="pokemon1Moves">
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
             </div>
             <div id="pokemon2Moves">
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
-                <div className="moveButton" onclick={highlightMove}>---No Move---</div>
+                <div className="moveButton">---No Move---</div>
                 <p className="individualCalc">0%-0%</p>
             </div>
             <div id="calcs">
-                <p id="range">
 
-                </p>
-                <p id="values">
-
-                </p>
             </div>
             <div id="pokemon1Data" className="pokemonData">
                 <label htmlFor="species">Species: </label>
@@ -1858,6 +1988,9 @@ const DamageCalculatorWindow = (props) => {
                 <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
                 <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[calcStats_DC_Edition(0), calcDamage(0, 1)]} />
                 <div className="finalSpeed"></div>
+                <label htmlFor="currHP">Current HP: </label>
+                <div className="currHP"></div>
+                <input className="currHPPercentageBar" type="number" name="currHP" min="0" max="100" value="100" onChange={[calcCurrHP(0), calcDamage(0, 1)]} />
                 <label htmlFor="moves">Moves: </label>
                 <select className="moveSelector" name="moves">
                     <option value="NONE">---Select Move---</option>
