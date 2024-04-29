@@ -1,9 +1,9 @@
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import * as helper from '/helper.js';
+import * as helper from './/helper.js';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {find} from 'underscore';
+import { find } from 'underscore';
 
 // const helper = require('./helper.js');
 // const React = require('react');
@@ -16,7 +16,6 @@ let moveData;
 let natureData;
 let itemData;
 let typeData;
-
 let premiumStatus;
 
 const loadData = async (url) => {
