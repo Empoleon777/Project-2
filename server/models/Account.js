@@ -101,9 +101,5 @@ AccountSchema.statics.changePassword = async (username, oldpassword, newpassword
   }
 };
 
-AccountSchema.statics.togglePremiumStatus = async () => {
-  premium = !premium;
-};
-
 AccountModel = mongoose.model('Account', AccountSchema);
 module.exports = AccountModel;

@@ -17,7 +17,7 @@ const router = (app) => {
   app.post('/builder', mid.requiresLogin, controllers.Team.makeTeam);
   app.delete('/deleteTeam', mid.requiresLogin, controllers.Team.deleteTeam);
 
-  app.post('/premium', mid.requiresLogin, mid.requiresPremium, controllers.Account.togglePremiumStatus);
+  app.post('/premium', mid.requiresLogin, controllers.Account.togglePremiumStatus);
 
   app.get('/pokemonData', mid.requiresLogin, controllers.Data.loadPokemon);
   app.get('/moveData', mid.requiresLogin, controllers.Data.loadMoves);

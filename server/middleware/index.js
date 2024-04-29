@@ -22,7 +22,7 @@ const requiresSecure = (req, res, next) => {
   return next();
 };
 
-const requiresPremium = (req, res) => {
+const requiresPremium = (req, res, next) => {
   if (!req.session.account.premium) {
     return res.redirect('/premium');
   }

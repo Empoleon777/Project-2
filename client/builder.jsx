@@ -1,6 +1,5 @@
-import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
-
+// import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
+// import '@splidejs/react-splide/css';
 const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');

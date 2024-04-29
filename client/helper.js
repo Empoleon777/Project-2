@@ -5,6 +5,7 @@
 const handleError = (message) => {
     // document.getElementById('errorMessage').textContent = message;
     // document.getElementById('domoMessage').classList.remove('hidden');
+    alert(message);
 };
 
 /* Sends post requests to the server using fetch. Will look for various
