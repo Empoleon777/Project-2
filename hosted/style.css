@@ -5,16 +5,21 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: #656565;
 }
 
 nav {
     width: 100%;
     height: 50px;
-    background-color: #55acee;
+    background-color: #353535;
 }
 
 nav:nth-child(1) {
     padding-left: 25px;
+}
+
+nav:nth-child(5) {
+    float: right;
 }
 
 .navlink {
@@ -35,13 +40,13 @@ nav:nth-child(1) {
     text-decoration: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #353535;
     transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
     transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    background-color: #717171;
 }
 
 .TeamList {
@@ -66,6 +71,65 @@ nav:nth-child(1) {
     grid-template-areas:
         "name"
         "team_builder";
+}
+
+#teamBuilder label {
+    display: inline-block;
+    width: 75px;
+    margin-left: 10px;
+    font-size: 1.2em;
+    /* float: left; */
+    color: white;
+}
+
+#teamBuilder input[type=text] {
+    float: left;
+}
+
+content {
+    /* display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "labels inputs"
+        "submit submit"; */
+    height: 300px;
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 150px;
+    font-size: 1.2em;
+}
+
+.mainForm h3 {
+    text-align: center;
+}
+
+.mainForm label {
+    display: inline-block;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 1.2em;
+}
+
+#user,
+#pass,
+#pass2,
+#oldpass,
+#newpass,
+#newpass2 {
+    text-align: center;
+    font-size: 1.1em;
+    width: 180px;
+    border-radius: 6px;
+}
+
+#user:focus,
+#pass:focus,
+#pass2:focus #oldpass:focus,
+#newpass:focus,
+#newpass2:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 1px #55acee;
 }
 
 .team {
@@ -361,4 +425,71 @@ nav:nth-child(1) {
 #toggle {
     grid-area: "toggle";
     width: 100px;
+}
+
+#calculator {
+    display: grid;
+    grid-template-rows: 34% 12% 50%;
+    grid-template-columns: 1/3 1/3 1/3;
+    grid-template-areas:
+        "moveHighlightersA moveHighlightersA moveHighlightersA moveHighlightersB moveHighlightersB moveHighlightersB"
+        "calcs calcs calcs calcs calcs calcs"
+        "dataA dataA field field dataB dataB";
+}
+
+#pokemon1moves {
+    grid-area: "moveHighlightersA";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#pokemon2moves {
+    grid-area: "moveHighlightersB";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+}
+
+#fieldStates {
+    grid-area: "field";
+    display: grid;
+    grid-template-areas:
+        "weather weather"
+        "terrain terrain"
+        "side1 side2";
+}
+
+#weather {
+    grid-area: "weather";
+    display: inline-block;
+}
+
+#terrain {
+    grid-area: "terrain";
+    display: inline-block;
+}
+
+#calcs {
+    grid-area: "calcs";
+    align-content: center;
+}
+
+.pokemonData {
+    display: grid;
+    grid-template-areas:
+        "species species species species species"
+        "level level level level level"
+        "ability ability ability ability ability"
+        "nature nature nature nature nature"
+        "item item item item item"
+        "base_HP HP_IVs HP_EVs final_HP"
+        "base_attack attack_IVs attack_EVs final_attack attack_stage"
+        "base_defense defense_IVs defense_EVs final_defense defense_stage"
+        "base_special_attack special_attack_IVs special_attack_EVs final_special_attack special_attack_stage"
+        "base_special_defense special_defense_IVs special_defense_EVs final_special_defense special_defense_stage"
+        "base_speed speed_IVs speed_EVs final_speed speed_stage"
+        "currHP_number currHP_number currHP_Percentage currHP_Percentage currHP_Percentage"
+        "moves moves moves moves moves";
 }

@@ -51,14 +51,10 @@ const LoginWindow = (props) => {
             method="POST"
             className="mainForm"
         >
-            <div id="labels">
-                <label htmlFor="username">Username: </label>
-                <label htmlFor="pass">Password: </label>
-            </div>
-            <div id="inputs">
-                <input id="user" type="text" name="username" placeholder="username" />
-                <input id="pass" type="password" name="pass" placeholder="password" />
-            </div>
+            <label htmlFor="username">Username: </label>
+            <input id="user" type="text" name="username" placeholder="username" />
+            <label htmlFor="pass">Password: </label>
+            <input id="pass" type="password" name="pass" placeholder="password" />
             <input className="formSubmit" type="submit" value="Sign In" />
         </form>
     );
@@ -73,16 +69,12 @@ const SignupWindow = (props) => {
             method="POST"
             className="mainForm"
         >
-            <div id="labels">
-                <label htmlFor="username">Username: </label>
-                <label htmlFor="pass">Password: </label>
-                <label htmlFor="pass">Confirm Password: </label>
-            </div>
-            <div id="inputs">
-                <input id="user" type="text" name="username" placeholder="username" />
-                <input id="pass" type="password" name="pass" placeholder="password" />
-                <input id="pass2" type="password" name="pass2" placeholder="confirm password" />
-            </div>
+            <label htmlFor="username">Username: </label>
+            <input id="user" type="text" name="username" placeholder="username" />
+            <label htmlFor="pass">Password: </label>
+            <input id="pass" type="password" name="pass" placeholder="password" />
+            <label htmlFor="pass">Confirm Password: </label>
+            <input id="pass2" type="password" name="pass2" placeholder="confirm password" />
             <input className="formSubmit" type="submit" value="Sign In" />
         </form>
     );
