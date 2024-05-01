@@ -82,8 +82,7 @@ const handleTeam = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const teamName = e.target.querySelector(".teamName");
-
+    const teamName = document.querySelector(".teamName").value;
     const speciesSelectors = document.querySelectorAll(".speciesSelector");
     const nicknameBars = document.querySelectorAll(".nicknameBar");
     const levelBars = document.querySelectorAll(".levelBar");
@@ -254,15 +253,27 @@ const handleTeam = (e) => {
         move_4: moveSelectors[23].value
     };
 
+    const team = {
+        member1,
+        member2,
+        member3,
+        member4,
+        member5,
+        member6
+    };
+
+    for (const member in team) {
+        for (const attribute in member) {
+            if (attribute === null || attribute === undefined) {
+                attribute = "";
+            }
+        }
+    }
+
     helper.sendPost(e.target.action,
         {
             teamName,
-            member1,
-            member2,
-            member3,
-            member4,
-            member5,
-            member6
+            team
         },
         loadTeamsFromServer
     );
@@ -1972,12 +1983,12 @@ const DamageCalculatorWindow = (props) => {
                     <option value="NONE">---BLANK---</option>
                 </select> */}
                 <label htmlFor="level">Level: </label>
-                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="ability">Ability: </label>
                 <select className="abilitySelector" name="ability">
                 </select>
                 <label htmlFor="nature">Nature: </label>
-                <select className="natureSelector" name="nature" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]}>
+                <select className="natureSelector" name="nature" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }}>
                 </select>
                 <label htmlFor="item">Held Item: </label>
                 <select className="itemSelector" name="item" onChange={() => calcDamage(0, 1)}>
@@ -1985,50 +1996,50 @@ const DamageCalculatorWindow = (props) => {
                 <label>HP: </label>
                 <div className="baseHP"></div>
                 <label htmlFor="HPIVs">IVs: </label>
-                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="HPEVs">EVs: </label>
-                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalHP"></div>
                 <label>Attack: </label>
                 <div className="baseAttack"></div>
                 <label htmlFor="attackIVs">IVs: </label>
-                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="attackEVs">EVs: </label>
-                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalAttack"></div>
-                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label>Defense: </label>
                 <div className="baseDefense"></div>
                 <label htmlFor="defenseIVs">IVs: </label>
-                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="defenseEVs">EVs: </label>
-                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalDefense"></div>
-                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label>Special Attack: </label>
                 <div className="baseSpecialAttack"></div>
                 <label htmlFor="specialAttackIVs">IVs: </label>
-                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="specialAttackEVs">EVs: </label>
-                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalSpecialAttack"></div>
-                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label>Special Defense: </label>
                 <div className="baseSpecialDefense"></div>
                 <label htmlFor="specialDefenseIVs">IVs: </label>
-                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="specialDefenseEVs">EVs: </label>
-                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalSpecialDefense"></div>
-                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label>Speed: </label>
                 <div className="baseSpeed"></div>
                 <label htmlFor="speedIVs">IVs: </label>
-                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="speedEVs">EVs: </label>
-                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <div className="finalSpeed"></div>
-                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(0); calcDamage(0, 1); }} />
                 <label htmlFor="currHP">Current HP: </label>
                 <div className="currHP"></div>
                 <input className="currHPPercentageBar" type="number" name="currHP" min="0" max="100" value="100" onChange={[() => calcCurrHP(1), () => calcDamage(1, 0)]} />
@@ -2052,7 +2063,7 @@ const DamageCalculatorWindow = (props) => {
                 <div id="field">
                     <div id='weather'>
                         <label htmlFor="weather">Weather</label>
-                        <select id="weather" onChange={[() => calcDamage(0, 1), () => calcDamage(1, 0)]}>
+                        <select id="weather" onChange={() => { calcDamage(0, 1); () => calcDamage(1, 0); }}>
                             <option value="None">None</option>
                             <option value="Sun">Sun</option>
                             <option value="Rain">Rain</option>
@@ -2065,7 +2076,7 @@ const DamageCalculatorWindow = (props) => {
                     </div>
                     <div id='terrain'>
                         <label htmlFor="terrain">Terrain</label>
-                        <select id="terrain" onChange={[() => calcDamage(0, 1), () => calcDamage(1, 0)]}>
+                        <select id="terrain" onChange={() => { calcDamage(0, 1); () => calcDamage(1, 0); }}>
                             <option value="None">None</option>
                             <option value="Electric Terrain">Electric Terrain</option>
                             <option value="Psychic Terrain">Psychic Terrain</option>
@@ -2100,12 +2111,12 @@ const DamageCalculatorWindow = (props) => {
                     <option value="NONE">---BLANK---</option>
                 </select> */}
                 <label htmlFor="level">Level: </label>
-                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="ability">Ability: </label>
                 <select className="abilitySelector" name="ability">
                 </select>
                 <label htmlFor="nature">Nature: </label>
-                <select className="natureSelector" name="nature" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]}>
+                <select className="natureSelector" name="nature" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }}>
                 </select>
                 <label htmlFor="item">Held Item: </label>
                 <select className="itemSelector" name="item" onChange={() => calcDamage(0, 1)}>
@@ -2113,50 +2124,50 @@ const DamageCalculatorWindow = (props) => {
                 <label>HP: </label>
                 <div className="baseHP"></div>
                 <label htmlFor="HPIVs">IVs: </label>
-                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="HPEVs">EVs: </label>
-                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalHP"></div>
                 <label>Attack: </label>
                 <div className="baseAttack"></div>
                 <label htmlFor="attackIVs">IVs: </label>
-                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="attackEVs">EVs: </label>
-                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalAttack"></div>
-                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label>Defense: </label>
                 <div className="baseDefense"></div>
                 <label htmlFor="defenseIVs">IVs: </label>
-                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="defenseEVs">EVs: </label>
-                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalDefense"></div>
-                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label>Special Attack: </label>
                 <div className="baseSpecialAttack"></div>
                 <label htmlFor="specialAttackIVs">IVs: </label>
-                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="specialAttackEVs">EVs: </label>
-                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalSpecialAttack"></div>
-                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label>Special Defense: </label>
                 <div className="baseSpecialDefense"></div>
                 <label htmlFor="specialDefenseIVs">IVs: </label>
-                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="specialDefenseEVs">EVs: </label>
-                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalSpecialDefense"></div>
-                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label>Speed: </label>
                 <div className="baseSpeed"></div>
                 <label htmlFor="speedIVs">IVs: </label>
-                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="speedEVs">EVs: </label>
-                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <div className="finalSpeed"></div>
-                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
+                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={() => { calcStats_DC_Edition(1); calcDamage(1, 0); }} />
                 <label htmlFor="currHP">Current HP: </label>
                 <div className="currHP"></div>
                 <input className="currHPPercentageBar" type="number" name="currHP" min="0" max="100" value="100" onChange={[() => calcCurrHP(1), () => calcDamage(1, 0)]} />
