@@ -413,7 +413,11 @@ const loadSpecies = (memberNumber) => {
         nicknameBars[memberNumber].value = "";
 
         sprites[memberNumber].src = species["sprites"]["home"]["front_default"];
-        types[memberNumber].innerHTML = `${species["types"].map(type => `<div className="type">${reformatName(type["type"]["name"])}</div>`).join("")}`;
+
+        for (const type in species["types"]) {
+            types[memberNumber].innerHTML += `<div className="type">${reformatName(type["type"]["name"])}</div>`;
+        }
+
         styleTypes(memberNumber);
 
         levelBars[memberNumber].value = 100;
@@ -447,6 +451,7 @@ const loadSpecies = (memberNumber) => {
         species["abilities"].forEach(ability => {
             abilities.push(abilityData.find(data => data.name === ability.name));
         });
+
         abilitySelectors[memberNumber].innerHTML = `${abilities.map(ability => `<option value="${ability}">${reformatName(ability.name)}</option>`).join("")}`;
 
         let moves = [];
@@ -1153,7 +1158,8 @@ const TeamList = (props) => {
         );
     }
 
-    const teamNodes = props.teams.map(team => {
+    let teamNodes;
+    for (const team in props.teams) {
         let member1;
         let member2;
         let member3;
@@ -1212,7 +1218,7 @@ const TeamList = (props) => {
                 <button className="deleteTeam" onClick={(e) => deleteTeam(e, team)}>Delete</button>
             </div>
         );
-    });
+    };
 
     return (
         <div className="TeamList">
@@ -1281,7 +1287,7 @@ const loadTeamsFromServer = async () => {
     );
 }
 
-const togglePremium = async () => {
+const togglePremium = async (e) => {
     premiumStatus = !premiumStatus;
     helper.sendPost(e.target.action, premiumStatus);
 }
@@ -1959,19 +1965,19 @@ const DamageCalculatorWindow = (props) => {
             </div>
             <div id="pokemon1Data" className="pokemonData">
                 <label htmlFor="species">Species: </label>
-                <select className="speciesSelector" name="species" onChange={() => loadSpecies_DC_Edition(0)}>
+                <select className="speciesSelector" name="species" onChange={() => loadSpecies_DC_Edition(1)}>
                     <option value="NONE">---Species---</option>
                 </select>
                 {/* <select className="setSelector">
                     <option value="NONE">---BLANK---</option>
                 </select> */}
                 <label htmlFor="level">Level: </label>
-                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="levelBar" type="number" name="level" min="0" max="100" value="100" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="ability">Ability: </label>
                 <select className="abilitySelector" name="ability">
                 </select>
                 <label htmlFor="nature">Nature: </label>
-                <select className="natureSelector" name="nature" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]}>
+                <select className="natureSelector" name="nature" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]}>
                 </select>
                 <label htmlFor="item">Held Item: </label>
                 <select className="itemSelector" name="item" onChange={() => calcDamage(0, 1)}>
@@ -1979,66 +1985,68 @@ const DamageCalculatorWindow = (props) => {
                 <label>HP: </label>
                 <div className="baseHP"></div>
                 <label htmlFor="HPIVs">IVs: </label>
-                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="HPIVBar" type="number" name="HPIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="HPEVs">EVs: </label>
-                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="HPEVBar" type="number" name="HPEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalHP"></div>
                 <label>Attack: </label>
                 <div className="baseAttack"></div>
                 <label htmlFor="attackIVs">IVs: </label>
-                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="attackIVBar" type="number" name="attackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="attackEVs">EVs: </label>
-                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
-                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="attackEVBar" type="number" name="attackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalAttack"></div>
+                <input className="attackStageBar" type="number" name="attackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label>Defense: </label>
                 <div className="baseDefense"></div>
                 <label htmlFor="defenseIVs">IVs: </label>
-                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="defenseIVBar" type="number" name="defenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="defenseEVs">EVs: </label>
-                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
-                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="defenseEVBar" type="number" name="defenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalDefense"></div>
+                <input className="defenseStageBar" type="number" name="defenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label>Special Attack: </label>
                 <div className="baseSpecialAttack"></div>
                 <label htmlFor="specialAttackIVs">IVs: </label>
-                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="specialAttackIVBar" type="number" name="specialAttackIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="specialAttackEVs">EVs: </label>
-                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
-                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="specialAttackEVBar" type="number" name="specialAttackEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalSpecialAttack"></div>
+                <input className="specialAttackStageBar" type="number" name="specialAttackStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label>Special Defense: </label>
                 <div className="baseSpecialDefense"></div>
                 <label htmlFor="specialDefenseIVs">IVs: </label>
-                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="specialDefenseIVBar" type="number" name="specialDefenseIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="specialDefenseEVs">EVs: </label>
-                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
-                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="specialDefenseEVBar" type="number" name="specialDefenseEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalSpecialDefense"></div>
+                <input className="specialDefenseStageBar" type="number" name="specialDefenseStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label>Speed: </label>
                 <div className="baseSpeed"></div>
                 <label htmlFor="speedIVs">IVs: </label>
-                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="speedIVBar" type="number" name="speedIVs" min="0" max="31" value="31" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="speedEVs">EVs: </label>
-                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
-                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(0), () => calcDamage(0, 1)]} />
+                <input className="speedEVBar" type="number" name="speedEVs" min="0" max="252" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <div className="finalSpeed"></div>
+                <input className="speedStageBar" type="number" name="speedStage" min="-6" max="6" value="0" onChange={[() => calcStats_DC_Edition(1), () => calcDamage(1, 0)]} />
                 <label htmlFor="currHP">Current HP: </label>
                 <div className="currHP"></div>
-                <input className="currHPPercentageBar" type="number" name="currHP" min="0" max="100" value="100" onChange={[() => calcCurrHP(0), () => calcDamage(0, 1)]} />
-                <label htmlFor="moves">Moves: </label>
-                <select className="moveSelector" name="moves">
-                    <option value="NONE">---Select Move---</option>
-                </select>
-                <select className="moveSelector" name="moves">
-                    <option value="NONE">---Select Move---</option>
-                </select>
-                <select className="moveSelector" name="moves">
-                    <option value="NONE">---Select Move---</option>
-                </select>
-                <select className="moveSelector" name="moves">
-                    <option value="NONE">---Select Move---</option>
-                </select>
+                <input className="currHPPercentageBar" type="number" name="currHP" min="0" max="100" value="100" onChange={[() => calcCurrHP(1), () => calcDamage(1, 0)]} />
+                <div id="moves">
+                    <label htmlFor="moves">Moves: </label>
+                    <select className="moveSelector" name="moves">
+                        <option value="NONE" onChange={() => calcDamage(1, 0)}>---Select Move---</option>
+                    </select>
+                    <select className="moveSelector" name="moves">
+                        <option value="NONE" onChange={() => calcDamage(1, 0)}>---Select Move---</option>
+                    </select>
+                    <select className="moveSelector" name="moves">
+                        <option value="NONE" onChange={() => calcDamage(1, 0)}>---Select Move---</option>
+                    </select>
+                    <select className="moveSelector" name="moves">
+                        <option value="NONE" onChange={() => calcDamage(1, 0)}>---Select Move---</option>
+                    </select>
+                </div>
             </div>
             <div id="fieldStates">
                 <div id="field">
@@ -2229,17 +2237,23 @@ const init = async () => {
     const natureSelectors = document.querySelectorAll(".natureSelector");
     const itemSelectors = document.querySelectorAll(".itemSelector");
 
-    speciesSelectors.forEach(selector => {
-        selector.innerHTML += pokemonData.map(pokemon => `<option value="${pokemon}">${reformatName(pokemon.name)}</option>`).join("");
-    });
+    for (const selector in speciesSelectors) {
+        for (const species in pokemonData) {
+            selector.innerHTML += `<option value="${species}">${reformatName(species.name)}</option>`;
+        }
+    }
 
-    natureSelectors.forEach(selector => {
-        selector.innerHTML += natureData.map(nature => `<option value="${nature}">${reformatName(nature.name)} (+${reformatName(nature["increased_stat"].name)}, ${reformatName(nature["decreased_stat"].name)})</option>`).join("");
-    });
+    for (const selector in natureSelectors) {
+        for (const nature in natureData) {
+            selector.innerHTML += `<option value="${nature}">${reformatName(nature.name)}</option>`;
+        }
+    }
 
-    itemSelectors.forEach(selector => {
-        selector.innerHTML += itemData.map(item => `<option value="${item}">${reformatName(item.name)}</option>`).join("");
-    });
+    for (const selector in itemSelectors) {
+        for (const item in itemData) {
+            selector.innerHTML += `<option value="${item}">${reformatName(item.name)}</option>`;
+        }
+    }
 
     loadTeamsFromServer();
 }

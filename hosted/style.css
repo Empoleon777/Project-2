@@ -493,3 +493,38 @@ content {
         "currHP_number currHP_number currHP_Percentage currHP_Percentage currHP_Percentage"
         "moves moves moves moves moves";
 }
+
+.attackStageBar {
+    grid-area: "attack_stage";
+}
+
+.defenseStageBar {
+    grid-area: "defense_stage";
+}
+
+.specialAttackStageBar {
+    grid-area: "special_attack_stage";
+}
+
+.specialDefenseStageBar {
+    grid-area: "special_defense_stage";
+}
+
+.speedStageBar {
+    grid-area: "speed_stage";
+}
+
+.currHP {
+    grid-area: "currHP_number";
+}
+
+.currHPPercentageBar {
+    grid-area: "currHP_Percentage";
+    float: left;
+}
+
+#moves {
+    grid-area: "moves";
+    display: flex;
+    flex-direction: column;
+}
